@@ -1,0 +1,102 @@
+.wishlist {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 30px 0;
+  .table {
+    width: 70%;
+    thead tr th,
+    tbody tr th,
+    tbody tr td {
+      background-color: transparent;
+      color: #ffffff;
+    }
+
+    th {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      text-transform: uppercase;
+    }
+
+    td {
+      border: none !important;
+      align-content: center;
+
+      .icon-box {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: 0.4s;
+        .icon {
+          width: 18px;
+          height: 18px;
+        }
+      }
+
+      .icon-box:hover {
+        background-color: #ffffff;
+        color: #000;
+      }
+
+      .add-cart-box-between-icons {
+        width: 140px;
+        height: 40px;
+        padding: 10px;
+        font-size: 12px;
+        text-transform: uppercase;
+        text-align: center;
+        background-color: #555555;
+        color: #ffffff;
+        transition: 0.4s;
+      }
+      .add-cart-box-between-icons:hover {
+        background-color: #444;
+      }
+    }
+
+    tr {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+  }
+  .clear-wishlist-btn {
+    text-transform: uppercase;
+    background-color: transparent;
+    color: #ffffff;
+    opacity: 0.7;
+    padding: 10px 30px;
+    font-size: 13px;
+    border: 1px solid rgb(47, 47, 47);
+    border-radius: 4px;
+    box-shadow: none !important;
+    transition: 0.4s;
+    .trash-icon {
+      margin-right: 5px;
+    }
+  }
+  .clear-wishlist-btn:hover {
+    background-color: #c62828;
+    color: #ffffff;
+    opacity: 1;
+  }
+  .add-all-to-cart {
+    text-transform: uppercase;
+    background-color: transparent;
+    color: #ffffff;
+    opacity: 0.7;
+    padding: 10px 35px;
+    font-size: 13px;
+    border: 1px solid rgb(47, 47, 47);
+    border-radius: 4px;
+    box-shadow: none !important;
+    transition: 0.4s;
+  }
+  .add-all-to-cart:hover {
+    opacity: 1;
+    color: #000;
+    background-color: #ffffff;
+  }
+}
