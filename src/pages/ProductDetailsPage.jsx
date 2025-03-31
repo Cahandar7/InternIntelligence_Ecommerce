@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShirt, faStar } from "@fortawesome/free-solid-svg-icons";
 import { Container, Row, Col, Dropdown } from "react-bootstrap";
 import size_guide_img from "../assets/images/size_guide.png";
-import ReactImageMagnify from "react-image-magnify";
+// import ReactImageMagnify from "react-image-magnify";
 import slugify from "slugify";
 import { useWishlist } from "../contexts/WishlistContext";
 
@@ -88,7 +88,8 @@ const ProductDetails = () => {
       <Container className="product-details-container">
         <Row>
           <Col sm={12} md={6} lg={5}>
-            <ReactImageMagnify
+            <img src={selectedProd.image} alt="" />
+            {/* <ReactImageMagnify
               {...{
                 smallImage: {
                   alt: selectedProd.title,
@@ -117,7 +118,7 @@ const ProductDetails = () => {
                 },
                 zoomPosition: "center",
               }}
-            />
+            /> */}
           </Col>
           <Col sm={12} md={6} lg={4} className="product-details-texts">
             <p className="product-details-title">{selectedProd.title}</p>
