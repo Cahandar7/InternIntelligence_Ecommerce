@@ -13,6 +13,7 @@ import {
   faUser,
   faUserCog,
 } from "@fortawesome/free-solid-svg-icons";
+import xstore_logo from "../assets/images/xstore_logo.png";
 import { useWishlist } from "../contexts/WishlistContext";
 import Swal from "sweetalert2";
 import { LanguageContext } from "../contexts/LanguageContext";
@@ -328,7 +329,7 @@ const Header = () => {
             </form>
           </div>
           <div className="middle-h-center">
-            <img src="src/assets/images/xstore_logo.png" alt="XStore Logo" />
+            <img src={xstore_logo} alt="XStore Logo" />
           </div>
           <div className="middle-h-right">
             <div>
