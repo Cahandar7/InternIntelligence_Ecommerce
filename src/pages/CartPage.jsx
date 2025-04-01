@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "react-use-cart";
@@ -8,8 +8,10 @@ import slugify from "slugify";
 import Swal from "sweetalert2";
 import CartTopBanner from "../components/CartTopBanner";
 import supabase from "../supabase/supabaseClient";
+import { LanguageContext } from "../contexts/LanguageContext";
 
 const CartPage = () => {
+  const { language } = useContext(LanguageContext);
   const [inputPromo, setInputPromo] = useState("");
   const [promocodes, setPromocodes] = useState(["UNEC777", "TRY6C"]);
   const [discountApplied, setDiscountApplied] = useState(false);
@@ -79,14 +81,25 @@ const CartPage = () => {
               <path d="M23.76 4.248c-0.096-0.096-0.24-0.24-0.504-0.24h-18.48l-0.48-2.4c-0.024-0.288-0.384-0.528-0.624-0.528h-2.952c-0.384 0-0.624 0.264-0.624 0.624s0.264 0.648 0.624 0.648h2.424l2.328 11.832c0.312 1.608 1.848 2.856 3.48 2.856h11.28c0.384 0 0.624-0.264 0.624-0.624s-0.264-0.624-0.624-0.624h-11.16c-0.696 0-1.344-0.312-1.704-0.816l14.064-1.92c0.264 0 0.528-0.24 0.528-0.528l1.968-7.824v-0.024c-0.024-0.048-0.024-0.288-0.168-0.432zM22.392 5.184l-1.608 6.696-14.064 1.824-1.704-8.52h17.376zM8.568 17.736c-1.464 0-2.592 1.128-2.592 2.592s1.128 2.592 2.592 2.592c1.464 0 2.592-1.128 2.592-2.592s-1.128-2.592-2.592-2.592zM9.888 20.328c0 0.696-0.624 1.32-1.32 1.32s-1.32-0.624-1.32-1.32 0.624-1.32 1.32-1.32 1.32 0.624 1.32 1.32zM18.36 17.736c-1.464 0-2.592 1.128-2.592 2.592s1.128 2.592 2.592 2.592c1.464 0 2.592-1.128 2.592-2.592s-1.128-2.592-2.592-2.592zM19.704 20.328c0 0.696-0.624 1.32-1.32 1.32s-1.344-0.6-1.344-1.32 0.624-1.32 1.32-1.32 1.344 0.624 1.344 1.32z"></path>
             </svg>
             <h1 className="empty-cart-wishlist-h1">
-              YOUR SHOPPING CART IS EMPTY
+              {language === "en"
+                ? "Your Shopping Cart is Empty"
+                : language === "ru"
+                ? "Ваша корзина пуста"
+                : "Sizin səbətiniz boşdur"}
             </h1>
             <p className="empty-cart-wishlist-p">
-              We invite you to get acquainted with an assortment of our shop.
-              Surely you can find something for yourself!
+              {language === "en"
+                ? "We invite you to get acquainted with an assortment of our shop. Surely you can find something for yourself!"
+                : language === "ru"
+                ? "Приглашаем вас ознакомиться с ассортиментом нашего магазина. Наверняка вы найдете что-то для себя!"
+                : "Mağazamızın çeşidləri ilə tanış olmağa dəvət edirik. Əminik ki, özünüz üçün bir şey tapa bilərsiniz!"}
             </p>
             <Link to={"/shop"} className="empty-cart-wishlis-btn">
-              RETURN TO SHOP
+              {language === "en"
+                ? "Return to Shop"
+                : language === "ru"
+                ? "Вернуться в магазин"
+                : "Mağazaya qayıt"}
             </Link>
           </div>
         ) : (
@@ -95,12 +108,42 @@ const CartPage = () => {
               <table className="table">
                 <thead>
                   <tr>
-                    <th scope="col">PRODUCT</th>
+                    <th scope="col">
+                      {language === "en"
+                        ? "PRODUCT"
+                        : language === "ru"
+                        ? "ПРОДУКТ"
+                        : "MƏHSUL"}
+                    </th>
                     <th scope="col"></th>
-                    <th scope="col">PRICE</th>
-                    <th scope="col">SKU</th>
-                    <th scope="col">QUANTITY</th>
-                    <th scope="col">SUBTOTAL</th>
+                    <th scope="col">
+                      {language === "en"
+                        ? "PRICE"
+                        : language === "ru"
+                        ? "ЦЕНА"
+                        : "QİYMƏT"}
+                    </th>
+                    <th scope="col">
+                      {language === "en"
+                        ? "SKU"
+                        : language === "ru"
+                        ? "АРТИКУЛ"
+                        : "SKU"}
+                    </th>
+                    <th scope="col">
+                      {language === "en"
+                        ? "QUANTITY"
+                        : language === "ru"
+                        ? "КОЛИЧЕСТВО"
+                        : "MİQDARI"}
+                    </th>
+                    <th scope="col">
+                      {language === "en"
+                        ? "SUBTOTAL"
+                        : language === "ru"
+                        ? "ПОДЫТОГ"
+                        : "ARA CƏM"}
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -133,7 +176,11 @@ const CartPage = () => {
                               window.location.reload();
                             }}
                           >
-                            Delete
+                            {language === "en"
+                              ? "Delete"
+                              : language === "ru"
+                              ? "Удалить"
+                              : "Sil"}
                           </button>
                         </div>
                       </td>
@@ -177,13 +224,25 @@ const CartPage = () => {
                   <div className="promocode">
                     <input
                       type="text"
-                      placeholder="Enter promocode"
+                      placeholder={
+                        language === "en"
+                          ? "Enter promocode"
+                          : language === "ru"
+                          ? "Введите промокод"
+                          : "Promokodu daxil edin"
+                      }
                       value={inputPromo}
                       onChange={(e) => setInputPromo(e.target.value)}
                       disabled={discountApplied}
                     />
                     <button type="submit" disabled={discountApplied}>
-                      {discountApplied ? "Applied" : "Ok"}
+                      {discountApplied
+                        ? language === "en"
+                          ? "Applied"
+                          : language === "ru"
+                          ? "Применено"
+                          : "Tətbiq edildi"
+                        : "Ok"}
                     </button>
                   </div>
                 </form>
@@ -199,15 +258,33 @@ const CartPage = () => {
                   }}
                 >
                   <FontAwesomeIcon icon={faTrashAlt} className="trash-icon" />
-                  Clear shopping cart
+                  {language === "en"
+                    ? "Clear shopping cart"
+                    : language === "ru"
+                    ? "Очистить корзину"
+                    : "Səbəti təmizlə"}
                 </button>
               </div>
             </Col>
             <Col sm={12} md={5} lg={4} className="cart-totals">
-              <h2>Cart totals</h2>
+              <h2>
+                {language === "en"
+                  ? "Cart totals"
+                  : language === "ru"
+                  ? "Итоги корзины"
+                  : "Səbətin cəmi"}
+              </h2>
+
               <hr />
+
               <div className="subtotal">
-                <p>Subtotal </p>
+                <p>
+                  {language === "en"
+                    ? "Subtotal"
+                    : language === "ru"
+                    ? "Подытог"
+                    : "Ara cəm"}
+                </p>
                 <span>
                   $
                   {new Intl.NumberFormat("en-US", {
@@ -216,12 +293,32 @@ const CartPage = () => {
                   }).format(cartTotal)}
                 </span>
               </div>
+
               <div className="shipping">
-                <p>Shipping </p>
-                <span>Flat Rate: $5.00</span>
+                <p>
+                  {language === "en"
+                    ? "Shipping"
+                    : language === "ru"
+                    ? "Доставка"
+                    : "Çatdırılma"}
+                </p>
+                <span>
+                  {language === "en"
+                    ? "Flat Rate: $5.00"
+                    : language === "ru"
+                    ? "Фиксированная ставка: $5.00"
+                    : "Sabit tarif: $5.00"}
+                </span>
               </div>
+
               <div className="total">
-                <p>total </p>
+                <p>
+                  {language === "en"
+                    ? "Total"
+                    : language === "ru"
+                    ? "Итого"
+                    : "Ümumi"}
+                </p>
                 {discountApplied ? (
                   <div
                     style={{
@@ -255,6 +352,7 @@ const CartPage = () => {
                   </span>
                 )}
               </div>
+
               <button
                 onClick={() => {
                   if (user) {
@@ -263,10 +361,25 @@ const CartPage = () => {
                     });
                   } else {
                     Swal.fire({
-                      title: "Warning!",
-                      text: "Login First",
+                      title:
+                        language === "en"
+                          ? "Warning!"
+                          : language === "ru"
+                          ? "Предупреждение!"
+                          : "Xəbərdarlıq!",
+                      text:
+                        language === "en"
+                          ? "Login First"
+                          : language === "ru"
+                          ? "Сначала войдите"
+                          : "Əvvəlcə daxil olun",
                       icon: "warning",
-                      confirmButtonText: "Login",
+                      confirmButtonText:
+                        language === "en"
+                          ? "Login"
+                          : language === "ru"
+                          ? "Войти"
+                          : "Giriş",
                     }).then((res) => {
                       if (res.isConfirmed) {
                         navigate("/account/login");
@@ -276,10 +389,19 @@ const CartPage = () => {
                 }}
                 className="to-checkout"
               >
-                Proceed to checkout
+                {language === "en"
+                  ? "Proceed to checkout"
+                  : language === "ru"
+                  ? "Перейти к оформлению"
+                  : "Ödənişə keç"}
               </button>
+
               <Link to={"/shop"} className="to-shopping">
-                Continue shopping
+                {language === "en"
+                  ? "Continue shopping"
+                  : language === "ru"
+                  ? "Продолжить покупки"
+                  : "Alış-verişə davam et"}
               </Link>
             </Col>
           </Row>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import BlogPageCard from "../components/BlogPageCard";
 import blog_card1 from "../assets/images/blog_card1.png";
 import blog_card2 from "../assets/images/blog_card2.png";
@@ -18,11 +18,15 @@ import "swiper/css/scrollbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import AnimatedTopHero from "../components/AnimatedTopHero";
+import { LanguageContext } from "../contexts/LanguageContext";
 
 const BlogPage = () => {
+  const { language } = useContext(LanguageContext);
   return (
     <div className="page">
-      <AnimatedTopHero page={"blog"} />
+      <AnimatedTopHero
+        page={language === "en" ? "blog" : language === "ru" ? "блог" : "blog"}
+      />
       <Container className="blog-page">
         <Row className="g-5">
           <Col sm={12} md={6} lg={6}>

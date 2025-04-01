@@ -1,19 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons"; // Correct import for the calendar icon
 import { faMessage } from "@fortawesome/free-solid-svg-icons/faMessage";
 import { Link } from "react-router-dom";
 import footer_payments from "../assets/images/footer-payments.png";
+import { LanguageContext } from "../contexts/LanguageContext";
 
 const Footer = () => {
+  const { language } = useContext(LanguageContext);
+
   return (
     <div className="footer">
       <div className="top-footer">
         <div className="column1">
           <img src="src/assets/images/xstore_logo.png" alt="XStore Logo" />
           <p>
-            This is easy to update text from footer widget area. Add here
-            information about your store.
+            {language === "en"
+              ? "This is easy to update text from footer widget area. Add here information about your store."
+              : language === "ru"
+              ? "Это легко обновляемый текст в области виджета подвала. Добавьте информацию о вашем магазине."
+              : "Bu, altbilgi vidcet sahəsindən asanlıqla yenilənə bilən mətndir. Mağazanız haqqında məlumatı burada əlavə edin."}
           </p>
           <div>
             <span>48 Park Avenue, </span>
@@ -23,59 +29,149 @@ const Footer = () => {
           </div>
         </div>
         <div className="column2">
-          <h5>USEFUL LINKS</h5>
+          <h5>
+            {language === "en"
+              ? "USEFUL LINKS"
+              : language === "ru"
+              ? "ПОЛЕЗНЫЕ ССЫЛКИ"
+              : "FAYDALI ƏLAQƏLƏR"}
+          </h5>
           <hr />
           <div>
             <ul>
               <li>
-                <Link to={"/"}>Home Page</Link>
+                <Link to={"/"}>
+                  {language === "en"
+                    ? "Home Page"
+                    : language === "ru"
+                    ? "Главная"
+                    : "Ana səhifə"}
+                </Link>
               </li>
               <li>
-                <Link to={"/about"}>About Us</Link>
+                <Link to={"/about"}>
+                  {language === "en"
+                    ? "About Us"
+                    : language === "ru"
+                    ? "О нас"
+                    : "Haqqımızda"}
+                </Link>
               </li>
               <li>
-                <Link to={"/contact"}>Contact Us</Link>
+                <Link to={"/contact"}>
+                  {language === "en"
+                    ? "Contact Us"
+                    : language === "ru"
+                    ? "Контакты"
+                    : "Əlaqə"}
+                </Link>
               </li>
               <li>
-                <Link to={"/blog"}>Blog</Link>
+                <Link to={"/blog"}>
+                  {language === "en"
+                    ? "Blog"
+                    : language === "ru"
+                    ? "Блог"
+                    : "Bloq"}
+                </Link>
               </li>
               <li>
                 <Link to={"/faq"}>FAQs</Link>
               </li>
               <li>
-                <Link to={"/account"}>My Account</Link>
+                <Link to={"/account"}>
+                  {language === "en"
+                    ? "My Account"
+                    : language === "ru"
+                    ? "Мой аккаунт"
+                    : "Hesabım"}
+                </Link>
               </li>
               <li>
-                <Link to={"/"}>Conditions</Link>
+                <Link to={"/"}>
+                  {language === "en"
+                    ? "Conditions"
+                    : language === "ru"
+                    ? "Условия"
+                    : "Şərtlər"}
+                </Link>
               </li>
             </ul>
             <ul>
               <li>
-                <Link to={"contact"}>London</Link>
+                <Link to={"contact"}>
+                  {language === "en"
+                    ? "London"
+                    : language === "ru"
+                    ? "Лондон"
+                    : "London"}
+                </Link>
               </li>
               <li>
-                <Link to={"contact"}>San Francisco</Link>
+                <Link to={"contact"}>
+                  {language === "en"
+                    ? "San Francisco"
+                    : language === "ru"
+                    ? "Сан-Франциско"
+                    : "San Fransisko"}
+                </Link>
               </li>
               <li>
-                <Link to={"contact"}>New Orlean</Link>
+                <Link to={"contact"}>
+                  {language === "en"
+                    ? "New Orleans"
+                    : language === "ru"
+                    ? "Новый Орлеан"
+                    : "Yeni Orlean"}
+                </Link>
               </li>
               <li>
-                <Link to={"contact"}>Seattle</Link>
+                <Link to={"contact"}>
+                  {language === "en"
+                    ? "Seattle"
+                    : language === "ru"
+                    ? "Сиэтл"
+                    : "Sietl"}
+                </Link>
               </li>
               <li>
-                <Link to={"contact"}>Portland</Link>
+                <Link to={"contact"}>
+                  {language === "en"
+                    ? "Portland"
+                    : language === "ru"
+                    ? "Портленд"
+                    : "Portlend"}
+                </Link>
               </li>
               <li>
-                <Link to={"contact"}>Stockholm</Link>
+                <Link to={"contact"}>
+                  {language === "en"
+                    ? "Stockholm"
+                    : language === "ru"
+                    ? "Стокгольм"
+                    : "Stokholm"}
+                </Link>
               </li>
               <li>
-                <Link to={"contact"}>Hoffenheim</Link>
+                <Link to={"contact"}>
+                  {language === "en"
+                    ? "Hoffenheim"
+                    : language === "ru"
+                    ? "Хоффенхайм"
+                    : "Hoffenheim"}
+                </Link>
               </li>
             </ul>
           </div>
         </div>
         <div className="column3">
-          <h5>RECENT POSTS</h5>
+          <h5>
+            {language === "en"
+              ? "RECENT POSTS"
+              : language === "ru"
+              ? "ПОСЛЕДНИЕ ПОСТЫ"
+              : "SON DƏRGLƏR"}
+          </h5>
           <hr />
           <div>
             <h3>Consectetur aliquet</h3>
@@ -106,44 +202,82 @@ const Footer = () => {
           </div>
         </div>
         <div className="column4">
-          <h5>PRODUCT TAGS</h5>
+          <h5>
+            {language === "en"
+              ? "PRODUCT TAGS"
+              : language === "ru"
+              ? "ТЕГИ ТОВАРОВ"
+              : "MƏHSUL YAZILARI"}
+          </h5>
           <hr />
           <div>
             <Link to={"/"} className="tag-link">
-              accessories
+              {language === "en"
+                ? "accessories"
+                : language === "ru"
+                ? "аксессуары"
+                : "aksesuarlar"}
             </Link>
             <Link to={"/"} className="tag-link">
-              black
-            </Link>
-          </div>
-          <div>
-            <Link to={"/"} className="tag-link">
-              look
-            </Link>
-            <Link to={"/"} className="tag-link">
-              look2
-            </Link>
-            <Link to={"/"} className="tag-link">
-              look3
+              {language === "en"
+                ? "black"
+                : language === "ru"
+                ? "черный"
+                : "qara"}
             </Link>
           </div>
           <div>
             <Link to={"/"} className="tag-link">
-              new
+              {language === "en" ? "look" : language === "ru" ? "вид" : "baxış"}
             </Link>
             <Link to={"/"} className="tag-link">
-              sale
+              {language === "en"
+                ? "look2"
+                : language === "ru"
+                ? "вид2"
+                : "baxış2"}
             </Link>
             <Link to={"/"} className="tag-link">
-              week
+              {language === "en"
+                ? "look3"
+                : language === "ru"
+                ? "вид3"
+                : "baxış3"}
             </Link>
           </div>
           <div>
             <Link to={"/"} className="tag-link">
-              fashion
+              {language === "en" ? "new" : language === "ru" ? "новый" : "yeni"}
             </Link>
             <Link to={"/"} className="tag-link">
-              illegal
+              {language === "en"
+                ? "sale"
+                : language === "ru"
+                ? "распродажа"
+                : "endirim"}
+            </Link>
+            <Link to={"/"} className="tag-link">
+              {language === "en"
+                ? "week"
+                : language === "ru"
+                ? "неделя"
+                : "həftə"}
+            </Link>
+          </div>
+          <div>
+            <Link to={"/"} className="tag-link">
+              {language === "en"
+                ? "fashion"
+                : language === "ru"
+                ? "мода"
+                : "moda"}
+            </Link>
+            <Link to={"/"} className="tag-link">
+              {language === "en"
+                ? "illegal"
+                : language === "ru"
+                ? "незаконный"
+                : "qanunsuz"}
             </Link>
           </div>
         </div>
@@ -151,8 +285,20 @@ const Footer = () => {
       <div className="sub-footer">
         <div className="foot text">
           <span>
-            <p>Copyright © 2024 XStore theme. Created by 8theme - WordPress</p>
-            <p>WooCommerce themes.</p>
+            <p>
+              {language === "en"
+                ? "Copyright © 2024 XStore theme. Created by 8theme - WordPress"
+                : language === "ru"
+                ? "Авторские права © 2024 XStore theme. Создано 8theme - WordPress"
+                : "Müəllif hüquqları © 2024 XStore mövzusu. Yaradılmışdır 8theme - WordPress"}
+            </p>
+            <p>
+              {language === "en"
+                ? "WooCommerce themes."
+                : language === "ru"
+                ? "Темы WooCommerce."
+                : "WooCommerce mövzuları."}
+            </p>
           </span>
         </div>
         <div className="foot">

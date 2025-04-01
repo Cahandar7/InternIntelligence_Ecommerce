@@ -1,11 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useContext } from "react";
 import CartTopBanner from "../components/CartTopBanner";
 import { Col, Container, Dropdown, Row } from "react-bootstrap";
 import axios from "axios";
 import { useCart } from "react-use-cart";
 import { useLocation, useNavigate } from "react-router-dom";
+import { LanguageContext } from "../contexts/LanguageContext";
 
 const CheckOutPage = () => {
+  const { language } = useContext(LanguageContext);
   const [countries, setCountries] = useState([]);
   const [inputCountry, setInputCountry] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("Direct Bank Transfer");
@@ -59,7 +61,13 @@ const CheckOutPage = () => {
       <Container>
         <Row className="g-5 mb-4">
           <Col sm={12} md={7} lg={7} className="checkout-form">
-            <h1>Billing Details</h1>
+            <h1>
+              {language === "en"
+                ? "Billing Details"
+                : language === "ru"
+                ? "Платежные данные"
+                : "Ödəmə məlumatları"}
+            </h1>
             <hr />
             <form
               className="checkout-form-container"
@@ -68,33 +76,69 @@ const CheckOutPage = () => {
             >
               <div className="checkout-form-row">
                 <div className="checkout-form-group">
-                  <label htmlFor="name">First name *</label>
+                  <label htmlFor="name">
+                    {language === "en"
+                      ? "First name *"
+                      : language === "ru"
+                      ? "Имя *"
+                      : "Ad *"}
+                  </label>
                   <input type="text" id="name" name="name" required />
                 </div>
 
                 <div className="checkout-form-group">
-                  <label htmlFor="surname">Last name *</label>
+                  <label htmlFor="surname">
+                    {language === "en"
+                      ? "Last name *"
+                      : language === "ru"
+                      ? "Фамилия *"
+                      : "Soyad *"}
+                  </label>
                   <input type="text" id="surname" name="surname" required />
                 </div>
               </div>
 
               <div className="checkout-form-group full-width">
-                <label htmlFor="email">Email address *</label>
+                <label htmlFor="email">
+                  {language === "en"
+                    ? "Email address *"
+                    : language === "ru"
+                    ? "Электронная почта *"
+                    : "E-poçt ünvanı *"}
+                </label>
                 <input type="email" id="email" name="email" required />
               </div>
 
               <div className="checkout-form-group full-width">
-                <label htmlFor="phone">Phone number</label>
+                <label htmlFor="phone">
+                  {language === "en"
+                    ? "Phone number"
+                    : language === "ru"
+                    ? "Номер телефона"
+                    : "Telefon nömrəsi"}
+                </label>
                 <input type="tel" id="phone" name="phone" required />
               </div>
 
               <div className="checkout-form-group full-width">
-                <label htmlFor="pincode">PIN code</label>
+                <label htmlFor="pincode">
+                  {language === "en"
+                    ? "PIN code"
+                    : language === "ru"
+                    ? "ПИН-код"
+                    : "FİN kod"}
+                </label>
                 <input type="tel" id="pincode" name="pincode" required />
               </div>
 
               <div className="checkout-form-group full-width">
-                <label htmlFor="country-region">Country / Region *</label>
+                <label htmlFor="country-region">
+                  {language === "en"
+                    ? "Country / Region *"
+                    : language === "ru"
+                    ? "Страна / Регион *"
+                    : "Ölkə / Region *"}
+                </label>
                 <Dropdown onSelect={handleSelectCountry}>
                   <Dropdown.Toggle variant="dark" id="dropdown-basic">
                     <input
@@ -142,7 +186,13 @@ const CheckOutPage = () => {
               </div>
 
               <div className="checkout-form-group full-width">
-                <label htmlFor="town-city">Town / City *</label>
+                <label htmlFor="town-city">
+                  {language === "en"
+                    ? "Town / City *"
+                    : language === "ru"
+                    ? "Город / Населенный пункт *"
+                    : "Şəhər *"}
+                </label>
                 <input
                   type="text"
                   id="town-city"
@@ -152,7 +202,13 @@ const CheckOutPage = () => {
               </div>
 
               <div className="checkout-form-group full-width">
-                <label htmlFor="postcode">Postcode</label>
+                <label htmlFor="postcode">
+                  {language === "en"
+                    ? "Postcode"
+                    : language === "ru"
+                    ? "Почтовый индекс"
+                    : "Poçt indeksi"}
+                </label>
                 <input
                   type="number"
                   id="postcode"
@@ -162,23 +218,42 @@ const CheckOutPage = () => {
               </div>
             </form>
           </Col>
+
           <Col sm={12} md={5} lg={5} className="checkout-bill">
-            <h2>your order</h2>
+            <h2>
+              {language === "en"
+                ? "Your order"
+                : language === "ru"
+                ? "Ваш заказ"
+                : "Sizin sifarişiniz"}
+            </h2>
             <hr />
             <div className="items-review">
               {items.map((item, index) => (
                 <div>
                   <p key={index}>{item.title}</p>
                   <p key={index}>
-                    {item.quantity} × ${item.price.toFixed(2)}
+                    {item.quantity} × ${Number(item.price).toFixed(2)}
                   </p>
-                  <p key={index}>Subtotal: ${item.itemTotal.toFixed(2)}</p>
+                  <p key={index}>
+                    {language === "en"
+                      ? `Subtotal: $${item.itemTotal.toFixed(2)}`
+                      : language === "ru"
+                      ? `Подытог: $${item.itemTotal.toFixed(2)}`
+                      : `Ümumi məbləğ: $${item.itemTotal.toFixed(2)}`}
+                  </p>
                 </div>
               ))}
             </div>
             <hr />
             <div className="subtotal">
-              <p>Subtotal </p>
+              <p>
+                {language === "en"
+                  ? "Subtotal"
+                  : language === "ru"
+                  ? "Подытог"
+                  : "Ara cəm"}
+              </p>
               <span>
                 $
                 {new Intl.NumberFormat("en-US", {
@@ -188,18 +263,36 @@ const CheckOutPage = () => {
               </span>
             </div>
             <div className="shipping">
-              <p>Shipping </p>
+              <p>
+                {language === "en"
+                  ? "Shipping"
+                  : language === "ru"
+                  ? "Доставка"
+                  : "Çatdırılma"}
+              </p>
               <span>+$5.00</span>
             </div>
             <div className="shipping">
-              <p>Discounts </p>
+              <p>
+                {language === "en"
+                  ? "Discounts"
+                  : language === "ru"
+                  ? "Скидки"
+                  : "Endirimlər"}
+              </p>
               <span>
                 -$
                 {(cartTotal + 5 - totalSum).toFixed(2)}
               </span>
             </div>
             <div className="total">
-              <p>total </p>
+              <p>
+                {language === "en"
+                  ? "Total"
+                  : language === "ru"
+                  ? "Итого"
+                  : "Ümumi"}
+              </p>
               <span>
                 $
                 {new Intl.NumberFormat("en-US", {
@@ -208,7 +301,13 @@ const CheckOutPage = () => {
                 }).format(totalSum)}
               </span>
             </div>
-            <h2>payment method</h2>
+            <h2>
+              {language === "en"
+                ? "Payment Method"
+                : language === "ru"
+                ? "Способ оплаты"
+                : "Ödəniş üsulu"}
+            </h2>
             <hr />
             <div className="payment-method">
               <label>
@@ -220,11 +319,17 @@ const CheckOutPage = () => {
                   checked={paymentMethod === "Direct Bank Transfer"}
                   onChange={handlePaymentMethodChange}
                 />
-                Direct Bank Transfer
+                {language === "en"
+                  ? "Direct Bank Transfer"
+                  : language === "ru"
+                  ? "Прямой банковский перевод"
+                  : "Birbaşa Banka Köçürməsi"}
                 <div className="payment-description" id="bank-transfer-desc">
-                  Make your payment directly into our bank account. Please use
-                  your Order ID as the payment reference. Your order will not be
-                  shipped until the funds have cleared in our account.
+                  {language === "en"
+                    ? "Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order will not be shipped until the funds have cleared in our account."
+                    : language === "ru"
+                    ? "Переведите деньги напрямую на наш банковский счет. Пожалуйста, используйте ваш номер заказа в качестве ссылки для оплаты. Ваш заказ не будет отправлен, пока средства не поступят на наш счет."
+                    : "Ödəməni birbaşa bank hesabımıza köçürün. Zəhmət olmasa, ödənişin istinad nömrəsi olaraq Sifariş ID-nizi istifadə edin. Ödəmə məbləği hesabımıza keçirilmədən sifarişiniz göndərilməyəcək."}
                 </div>
               </label>
 
@@ -237,10 +342,17 @@ const CheckOutPage = () => {
                   checked={paymentMethod === "Check Payments"}
                   onChange={handlePaymentMethodChange}
                 />
-                Check Payments
+                {language === "en"
+                  ? "Check Payments"
+                  : language === "ru"
+                  ? "Оплата чеком"
+                  : "Çeklə Ödəniş"}
                 <div className="payment-description" id="check-payment-desc">
-                  Please send a check to Store Name, Store Street, Store Town,
-                  Store State / County, Store Postcode.
+                  {language === "en"
+                    ? "Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode."
+                    : language === "ru"
+                    ? "Пожалуйста, отправьте чек на имя магазина, улица магазина, город магазина, область/округ магазина, почтовый индекс магазина."
+                    : "Zəhmət olmasa, çeki Mağaza Adı, Mağaza Küçəsi, Mağaza Şəhəri, Mağaza Dövlət/İlçe, Mağaza Poçt Kodu ünvanına göndərin."}
                 </div>
               </label>
 
@@ -253,9 +365,17 @@ const CheckOutPage = () => {
                   checked={paymentMethod === "Cash on Delivery"}
                   onChange={handlePaymentMethodChange}
                 />
-                Cash on Delivery
+                {language === "en"
+                  ? "Cash on Delivery"
+                  : language === "ru"
+                  ? "Оплата при доставке"
+                  : "Çatdırılma zamanı nağd ödəniş"}
                 <div className="payment-description" id="cash-on-delivery-desc">
-                  Pay with cash upon delivery.
+                  {language === "en"
+                    ? "Pay with cash upon delivery."
+                    : language === "ru"
+                    ? "Оплатите наличными при доставке."
+                    : "Çatdırılma zamanı nağd ödəniş edin."}
                 </div>
               </label>
 
@@ -268,10 +388,17 @@ const CheckOutPage = () => {
                   checked={paymentMethod === "PayPal"}
                   onChange={handlePaymentMethodChange}
                 />
-                PayPal
+                {language === "en"
+                  ? "PayPal"
+                  : language === "ru"
+                  ? "PayPal"
+                  : "PayPal"}
                 <div className="payment-description" id="paypal-desc">
-                  Pay via PayPal; you can pay with your credit card if you don’t
-                  have a PayPal account.
+                  {language === "en"
+                    ? "Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account."
+                    : language === "ru"
+                    ? "Оплатите через PayPal; вы можете оплатить картой, если у вас нет аккаунта PayPal."
+                    : "PayPal ilə ödəniş edin; əgər PayPal hesabınız yoxdursa, kredit kartınızla da ödəyə bilərsiniz."}
                   <img
                     src="https://www.paypalobjects.com/webstatic/mktg/Logo/AM_mc_vs_ms_ae_UK.png"
                     alt="PayPal Acceptance Mark"
@@ -282,7 +409,11 @@ const CheckOutPage = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    What is PayPal?
+                    {language === "en"
+                      ? "What is PayPal?"
+                      : language === "ru"
+                      ? "Что такое PayPal?"
+                      : "PayPal nədir?"}
                   </a>
                 </div>
               </label>
@@ -292,7 +423,11 @@ const CheckOutPage = () => {
               className="to-checkout"
               onClick={handlePlaceOrderClick}
             >
-              Place Order
+              {language === "en"
+                ? "Place Order"
+                : language === "ru"
+                ? "Оформить заказ"
+                : "Sifarişi təsdiqlə"}
             </button>
             <button
               type="button"
@@ -301,7 +436,11 @@ const CheckOutPage = () => {
                 history.back();
               }}
             >
-              Return to Cart
+              {language === "en"
+                ? "Return to Cart"
+                : language === "ru"
+                ? "Вернуться в корзину"
+                : "Səbətə geri dön"}
             </button>
           </Col>
         </Row>

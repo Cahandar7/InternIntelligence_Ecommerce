@@ -1,13 +1,16 @@
+import React, { useContext } from "react";
 import {
   faCalendarDays,
   faMessage,
   faEye,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
 import { Link } from "react-router-dom";
+import { LanguageContext } from "../contexts/LanguageContext";
 
 const BlogPageCard = ({ image, title, date, views, messages, desc }) => {
+  const { language } = useContext(LanguageContext);
+
   return (
     <div className="blog-page-card">
       <div className="image-box">
@@ -25,7 +28,12 @@ const BlogPageCard = ({ image, title, date, views, messages, desc }) => {
         </div>
         <p>{desc}</p>
         <Link to="/blog" className="blog-card-link">
-          Continue Reading <span>{">"}</span>
+          {language === "en"
+            ? "Continue Reading"
+            : language === "ru"
+            ? "Читать дальше"
+            : "Davamını oxu"}{" "}
+          <span>{">"}</span>
         </Link>
       </div>
     </div>

@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import CartTopBanner from "../components/CartTopBanner";
 import { Link, useLocation } from "react-router-dom";
+import { LanguageContext } from "../contexts/LanguageContext";
 
 const OrderStatusPage = () => {
+  const { language } = useContext(LanguageContext);
   const location_order = useLocation();
   const billingInfo = location_order.state?.billingInfo;
   const totalSum = location_order.state?.totalSum;
@@ -35,21 +37,57 @@ const OrderStatusPage = () => {
       >
         <div className="order-status">
           <div className="status">
-            <h2>order tracking</h2>
-            <h2>{!billingInfo ? "No Orders" : "Order Placed"}</h2>
+            <h2>
+              {language === "en"
+                ? "Order Tracking"
+                : language === "ru"
+                ? "Отслеживание заказа"
+                : "Sifarişin izlənməsi"}
+            </h2>
+            <h2>
+              {!billingInfo
+                ? language === "en"
+                  ? "No Orders"
+                  : language === "ru"
+                  ? "Нет заказов"
+                  : "Heç bir sifariş yoxdur"
+                : language === "en"
+                ? "Order Placed"
+                : language === "ru"
+                ? "Заказ размещен"
+                : "Sifariş verildi"}
+            </h2>
           </div>
           <hr />
           {!billingInfo ? (
-            <div>No billing information found</div>
+            <div>
+              {language === "en"
+                ? "No billing information found"
+                : language === "ru"
+                ? "Информация о платеже не найдена"
+                : "Ödəniş məlumatı tapılmadı"}
+            </div>
           ) : (
             <>
               <div>
-                <h2 style={{ marginBottom: "10px" }}>Billing Information</h2>
+                <h2 style={{ marginBottom: "10px" }}>
+                  {language === "en"
+                    ? "Billing Information"
+                    : language === "ru"
+                    ? "Информация о платеже"
+                    : "Ödəniş Məlumatları"}
+                </h2>
                 <div className="client-data">
                   <p>
                     {billingInfo.name} {billingInfo.surname}
                   </p>
-                  <p>PIN code: {billingInfo.pincode}</p>
+                  <p>
+                    {language === "en"
+                      ? `PIN code: ${billingInfo.pincode}`
+                      : language === "ru"
+                      ? `Пин-код: ${billingInfo.pincode}`
+                      : `FİN kod: ${billingInfo.pincode}`}
+                  </p>
                   <p>
                     {billingInfo.email}, {billingInfo.phone}
                   </p>
@@ -57,13 +95,25 @@ const OrderStatusPage = () => {
                     {billingInfo["country-region"]}, {billingInfo["town-city"]},{" "}
                     {billingInfo.postcode}
                   </p>
-                  <p>Payment Method: {paymentMethod}</p>
+                  <p>
+                    {language === "en"
+                      ? `Payment Method: ${paymentMethod}`
+                      : language === "ru"
+                      ? `Метод оплаты: ${paymentMethod}`
+                      : `Ödeme Yöntemi: ${paymentMethod}`}
+                  </p>
                   <p>{formattedDate}</p>
                 </div>
               </div>
               <hr />
               <div className="total">
-                <p>total </p>
+                <p>
+                  {language === "en"
+                    ? "Total"
+                    : language === "ru"
+                    ? "Итого"
+                    : "Toplam"}
+                </p>
                 <span>
                   $
                   {new Intl.NumberFormat("en-US", {
@@ -83,7 +133,11 @@ const OrderStatusPage = () => {
             }}
           >
             <Link to={"/shop"} className="to-shopping">
-              Continue shopping
+              {language === "en"
+                ? "Continue shopping"
+                : language === "ru"
+                ? "Продолжить покупки"
+                : "Alışverişe devam et"}
             </Link>
           </div>
         </div>

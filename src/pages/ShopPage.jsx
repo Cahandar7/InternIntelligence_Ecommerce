@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import {
   Accordion,
   Col,
@@ -12,11 +12,19 @@ import { faGlobe, faStar, faTruck } from "@fortawesome/free-solid-svg-icons";
 import ProductCard from "../components/ProductCard";
 import AnimatedTopHero from "../components/AnimatedTopHero";
 import { useSelector } from "react-redux";
+import { LanguageContext } from "../contexts/LanguageContext";
 import product_not_found from "../assets/images/product_not_found.gif";
 
 const ShopPage = () => {
   const products = useSelector((p) => p);
-  const [activeItem, setActiveItem] = useState("Default Sorting");
+  const { language } = useContext(LanguageContext);
+  const [activeItem, setActiveItem] = useState(
+    language === "en"
+      ? "Default Sorting"
+      : language === "ru"
+      ? "Сортировка по умолчанию"
+      : "Defolt sıralama"
+  );
   const [activeBox, setActiveBox] = useState("square1");
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState(new Set());
@@ -59,7 +67,8 @@ const ShopPage = () => {
     } else if (activeItem === "Sort by latest") {
       filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
     } else if (activeItem === "Sort by price: low to high") {
-      filtered.sort((a, b) => a.price - b.price);bun
+      filtered.sort((a, b) => a.price - b.price);
+      bun;
     } else if (activeItem === "Sort by price: high to low") {
       filtered.sort((a, b) => b.price - a.price);
     }
@@ -113,20 +122,32 @@ const ShopPage = () => {
 
   return (
     <div className="shop-page page">
-      <AnimatedTopHero page={"shop"} />
+      <AnimatedTopHero
+        page={
+          language === "en" ? "Shop" : language === "ru" ? "Магазин" : "Mağaza"
+        }
+      />
       <Container className="products-con">
         <Row>
           <Col sm={12} md={3} lg={3}>
             <Accordion className="acc1">
               <Accordion.Item className="acc1-item">
                 <Accordion.Header className="acc1-header">
-                  Filter by Category
+                  {language === "en"
+                    ? "Filter by Category"
+                    : language === "ru"
+                    ? "Фильтр по категории"
+                    : "Kateqoriya üzrə Filtrlə"}
                 </Accordion.Header>
                 <Accordion.Body className="acc1-body">
                   <Accordion className="acc2">
                     <Accordion.Item eventKey="1" className="acc2-item">
                       <Accordion.Header className="acc2-header">
-                        Gender
+                        {language === "en"
+                          ? "Gender"
+                          : language === "ru"
+                          ? "Пол"
+                          : "Cins"}
                       </Accordion.Header>
                       <Accordion.Body className="acc2-body">
                         {[...new Set(products.map((item) => item.gender))].map(
@@ -137,7 +158,6 @@ const ShopPage = () => {
                                 checked={selectedGender === gender}
                                 onChange={() => handleGenderChange(gender)}
                               />
-
                               <span>{gender}</span>
                             </div>
                           )
@@ -149,7 +169,11 @@ const ShopPage = () => {
                   <Accordion className="acc2">
                     <Accordion.Item eventKey="2" className="acc2-item">
                       <Accordion.Header className="acc2-header">
-                        Brand
+                        {language === "en"
+                          ? "Brand"
+                          : language === "ru"
+                          ? "Бренд"
+                          : "Brend"}
                       </Accordion.Header>
                       <Accordion.Body className="acc2-body">
                         {[...new Set(products.map((item) => item.brand))].map(
@@ -160,7 +184,6 @@ const ShopPage = () => {
                                 checked={selectedBrands.has(brand)}
                                 onChange={() => handleBrandChange(brand)}
                               />
-
                               <span>{brand}</span>
                             </div>
                           )
@@ -170,9 +193,13 @@ const ShopPage = () => {
                   </Accordion>
 
                   <Accordion className="acc2">
-                    <Accordion.Item eventKey="2" className="acc2-item">
+                    <Accordion.Item eventKey="3" className="acc2-item">
                       <Accordion.Header className="acc2-header">
-                        Category
+                        {language === "en"
+                          ? "Category"
+                          : language === "ru"
+                          ? "Категория"
+                          : "Kateqoriya"}
                       </Accordion.Header>
                       <Accordion.Body className="acc2-body">
                         {[
@@ -197,12 +224,20 @@ const ShopPage = () => {
             <Accordion className="acc1">
               <Accordion.Item className="acc1-item">
                 <Accordion.Header className="acc1-header">
-                  Filter By Price
+                  {language === "en"
+                    ? "Filter By Price"
+                    : language === "ru"
+                    ? "Фильтровать по цене"
+                    : "Qiymətə görə Filtrlə"}
                 </Accordion.Header>
                 <Accordion.Body className="acc1-body">
                   <Form>
                     <Form.Label>
-                      Price: ${minPrice} - ${maxPrice}
+                      {language === "en"
+                        ? `Price: $${minPrice} - $${maxPrice}`
+                        : language === "ru"
+                        ? `Цена: ${minPrice} - ${maxPrice} $`
+                        : `Qiymət: ${minPrice} - ${maxPrice} $`}
                     </Form.Label>
 
                     <div className="range-slider">
@@ -264,8 +299,13 @@ const ShopPage = () => {
             <Accordion defaultActiveKey="0" className="acc1">
               <Accordion.Item eventKey="0" className="acc1-item">
                 <Accordion.Header className="acc1-header">
-                  Filter By Rating
+                  {language === "en"
+                    ? "Filter By Rating"
+                    : language === "ru"
+                    ? "Фильтровать по рейтингу"
+                    : "Reytinqə görə Filtrlə"}
                 </Accordion.Header>
+
                 <Accordion.Body className="acc1-body">
                   {Array.from({ length: 5 }).map((_, index) => (
                     <FontAwesomeIcon
@@ -293,7 +333,11 @@ const ShopPage = () => {
                   clearFilters();
                 }}
               >
-                Clear Filters
+                {language === "en"
+                  ? "Clear Filters"
+                  : language === "ru"
+                  ? "Сбросить фильтры"
+                  : "Filtrləri Təmizlə"}
               </button>
             </div>
             <div className="shop-box">
@@ -302,10 +346,19 @@ const ShopPage = () => {
                 size="2x"
                 className="shop-box-icon"
               />
-              <h1>WORLDWIDE DELIVERY</h1>
+              <h1>
+                {language === "en"
+                  ? "WORLDWIDE DELIVERY"
+                  : language === "ru"
+                  ? "Международная доставка"
+                  : "DÜNYA ÜZRƏ ÇATDIRILMA"}
+              </h1>
               <p>
-                We deliver to over 100 countries around the world, ensuring that
-                your orders arrive safely and quickly.
+                {language === "en"
+                  ? "We deliver to over 100 countries around the world, ensuring that your orders arrive safely and quickly."
+                  : language === "ru"
+                  ? "Мы доставляем в более чем 100 стран мира, гарантируя, что ваши заказы будут доставлены быстро и безопасно."
+                  : "Biz 100-dən çox ölkəyə çatdırılma həyata keçiririk, sifarişlərinizin təhlükəsiz və sürətli çatdırılmasını təmin edirik."}
               </p>
             </div>
 
@@ -315,10 +368,19 @@ const ShopPage = () => {
                 size="2x"
                 className="shop-box-icon"
               />
-              <h1>FREE SHIPPING</h1>
+              <h1>
+                {language === "en"
+                  ? "FREE SHIPPING"
+                  : language === "ru"
+                  ? "БЕСПЛАТНАЯ ДОСТАВКА"
+                  : "PULSUZ ÇATDIRILMA"}
+              </h1>
               <p>
-                Enjoy free shipping on all orders. Our service ensures that
-                every order is delivered with the care and efficiency.
+                {language === "en"
+                  ? "Enjoy free shipping on all orders. Our service ensures that every order is delivered with the care and efficiency."
+                  : language === "ru"
+                  ? "Наслаждайтесь бесплатной доставкой на все заказы. Наша служба доставки гарантирует, что каждый заказ будет доставлен с заботой и эффективностью."
+                  : "Bütün sifarişlərə pulsuz çatdırılma imkanı. Xidmətimiz hər bir sifarişin diqqət və səmərəliliklə çatdırılmasını təmin edir."}
               </p>
             </div>
           </Col>
@@ -333,7 +395,29 @@ const ShopPage = () => {
             >
               <Dropdown onSelect={handleSelect}>
                 <Dropdown.Toggle variant="dark" id="dropdown-basic">
-                  {activeItem}
+                  {language === "en"
+                    ? activeItem
+                    : language === "ru"
+                    ? activeItem === "Sort by latest"
+                      ? "Сортировать по новым"
+                      : activeItem === "Sort by rating"
+                      ? "Сортировать по рейтингу"
+                      : activeItem === "Sort by price: low to high"
+                      ? "Сортировать по цене: от низкой к высокой"
+                      : activeItem === "Sort by price: high to low"
+                      ? "Сортировать по цене: от высокой к низкой"
+                      : activeItem
+                    : language === "az"
+                    ? activeItem === "Sort by latest"
+                      ? "Ən son sıralama"
+                      : activeItem === "Sort by rating"
+                      ? "Reytinqə görə sıralama"
+                      : activeItem === "Sort by price: low to high"
+                      ? "Qiymətə görə: aşağıdan yuxarıya"
+                      : activeItem === "Sort by price: high to low"
+                      ? "Qiymətə görə: yuxarıdan aşağıya"
+                      : activeItem
+                    : activeItem}
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
@@ -343,7 +427,11 @@ const ShopPage = () => {
                       activeItem === "Sort by latest" ? "active-item" : ""
                     }
                   >
-                    Sort by latest
+                    {language === "en"
+                      ? "Sort by latest"
+                      : language === "ru"
+                      ? "Сортировать по новизне"
+                      : "Ən son sıralama"}
                   </Dropdown.Item>
                   <Dropdown.Item
                     eventKey="Sort by rating"
@@ -351,7 +439,11 @@ const ShopPage = () => {
                       activeItem === "Sort by rating" ? "active-item" : ""
                     }
                   >
-                    Sort by rating
+                    {language === "en"
+                      ? "Sort by rating"
+                      : language === "ru"
+                      ? "Сортировать по рейтингу"
+                      : "Reytinqə görə sıralama"}
                   </Dropdown.Item>
                   <Dropdown.Item
                     eventKey="Sort by price: low to high"
@@ -361,7 +453,11 @@ const ShopPage = () => {
                         : ""
                     }
                   >
-                    Sort by price: low to high
+                    {language === "en"
+                      ? "Sort by price: low to high"
+                      : language === "ru"
+                      ? "Сортировать по цене: от низкой к высокой"
+                      : "Qiymətə görə: aşağıdan yuxarıya"}
                   </Dropdown.Item>
                   <Dropdown.Item
                     eventKey="Sort by price: high to low"
@@ -371,7 +467,11 @@ const ShopPage = () => {
                         : ""
                     }
                   >
-                    Sort by price: high to low
+                    {language === "en"
+                      ? "Sort by price: high to low"
+                      : language === "ru"
+                      ? "Сортировать по цене: от высокой к низкой"
+                      : "Qiymətə görə: yuxarıdan aşağıya"}
                   </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
@@ -413,6 +513,7 @@ const ShopPage = () => {
                 </div>
               </div>
             </div>
+
             <Row className="mt-3">
               {filteredProducts.length === 0 ? (
                 <div
@@ -433,7 +534,11 @@ const ShopPage = () => {
                       textTransform: "uppercase",
                     }}
                   >
-                    Products Not Found
+                    {language === "en"
+                      ? "Products Not Found"
+                      : language === "ru"
+                      ? "Продукты не найдены"
+                      : "Məhsullar Tapılmadı"}
                   </h1>
                 </div>
               ) : (

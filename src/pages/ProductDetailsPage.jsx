@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import AnimatedTopHero from "../components/AnimatedTopHero";
 import { useCart } from "react-use-cart";
@@ -10,12 +10,14 @@ import size_guide_img from "../assets/images/size_guide.png";
 // import ReactImageMagnify from "react-image-magnify";
 import slugify from "slugify";
 import { useWishlist } from "../contexts/WishlistContext";
+import { LanguageContext } from "../contexts/LanguageContext";
 
 const ProductDetails = () => {
   const [activeColor, setActiveColor] = useState("Choose an option");
   const [activeSize, setActiveSize] = useState("Choose an option");
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
+  const { language } = useContext(LanguageContext);
 
   const brand_logos = {
     escada:
@@ -52,7 +54,11 @@ const ProductDetails = () => {
 
   return !selectedProd ? (
     <div className="page">
-      <AnimatedTopHero page={"shop"} />
+      <AnimatedTopHero
+        page={
+          language === "en" ? "Shop" : language === "ru" ? "Магазин" : "Mağaza"
+        }
+      />
       <div
         style={{
           display: "flex",
@@ -70,7 +76,11 @@ const ProductDetails = () => {
             textTransform: "uppercase",
           }}
         >
-          Product Not Found
+          {language === "en"
+            ? "Product Not Found"
+            : language === "ru"
+            ? "Продукт не найден"
+            : "Məhsul tapılmadı"}
         </h1>
         <span
           className="product-details-btn"
@@ -78,7 +88,7 @@ const ProductDetails = () => {
             history.back();
           }}
         >
-          Back
+          {language === "en" ? "Back" : language === "ru" ? "Назад" : "Geri"}
         </span>
       </div>
     </div>
@@ -88,7 +98,7 @@ const ProductDetails = () => {
       <Container className="product-details-container">
         <Row>
           <Col sm={12} md={6} lg={5}>
-            <img src={selectedProd.image} alt="" />
+            <img src={selectedProd.image} alt={selectedProd.title} />
             {/* <ReactImageMagnify
               {...{
                 smallImage: {

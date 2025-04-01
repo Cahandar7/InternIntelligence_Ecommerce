@@ -31,8 +31,8 @@ const Header = () => {
   const { language, setLanguage } = useContext(LanguageContext);
   const languageNames = {
     en: "English",
-    ru: "Russian",
-    az: "Azerbaijan",
+    ru: "Русский",
+    az: "Azərbaycan",
   };
 
   useMotionValueEvent(scrollY, "change", (latest) => {
@@ -119,7 +119,11 @@ const Header = () => {
                       setLanguage("en");
                     }}
                   >
-                    English
+                    {language === "en"
+                      ? "English"
+                      : language === "ru"
+                      ? "Английкий"
+                      : "İnglis"}
                   </button>
                 </li>
                 <li>
@@ -129,7 +133,11 @@ const Header = () => {
                       setLanguage("ru");
                     }}
                   >
-                    Russian
+                    {language === "en"
+                      ? "Russian"
+                      : language === "ru"
+                      ? "Русский"
+                      : "Rus"}
                   </button>
                 </li>
                 <li>
@@ -139,7 +147,11 @@ const Header = () => {
                       setLanguage("az");
                     }}
                   >
-                    Azerbaijan
+                    {language === "en"
+                      ? "Azerbaijan"
+                      : language === "ru"
+                      ? "Азербайджан"
+                      : "Azərbaycan"}
                   </button>
                 </li>
               </ul>
@@ -186,9 +198,17 @@ const Header = () => {
                     <path d="M23.448 7.248h-3.24v-1.032c0-0.528-0.432-0.96-0.96-0.96h-11.784c-0.528 0-0.96 0.432-0.96 0.96v2.304h-3.048c0 0 0 0 0 0-0.192 0-0.384 0.096-0.48 0.264l-1.56 2.736h-0.864c-0.312 0-0.552 0.24-0.552 0.552v4.416c0 0.288 0.24 0.552 0.552 0.552h1.032c0.264 1.032 1.176 1.728 2.208 1.728 0.144 0 0.288-0.024 0.432-0.048 0.888-0.168 1.584-0.816 1.8-1.68h1.032c0.048 0 0.12-0.024 0.168-0.024 0.072 0.024 0.168 0.024 0.24 0.024h5.040c0.288 1.176 1.44 1.92 2.64 1.68 0.888-0.168 1.584-0.816 1.8-1.68h2.328c0.528 0 0.96-0.432 0.96-0.96v-3.48h2.4c0.312 0 0.552-0.24 0.552-0.552s-0.24-0.552-0.552-0.552h-2.4v-1.032h0.288c0.312 0 0.552-0.24 0.552-0.552s-0.24-0.552-0.552-0.552h-0.288v-1.032h3.24c0.312 0 0.552-0.24 0.552-0.552-0.024-0.288-0.264-0.528-0.576-0.528zM16.848 7.8c0 0.312 0.24 0.552 0.552 0.552h1.728v1.032h-4.68c-0.312 0-0.552 0.24-0.552 0.552s0.24 0.552 0.552 0.552h4.656v1.032h-2.568c-0.144 0-0.288 0.048-0.384 0.168-0.096 0.096-0.168 0.24-0.168 0.384 0 0.312 0.24 0.552 0.552 0.552h2.544v3.312h-2.16c-0.144-0.552-0.456-1.008-0.936-1.344-0.504-0.336-1.104-0.48-1.704-0.36-0.888 0.168-1.584 0.816-1.8 1.68l-4.92-0.024 0.024-9.552 11.496 0.024v0.888h-1.728c-0.264 0-0.504 0.24-0.504 0.552zM14.712 15.288c0.648 0 1.2 0.528 1.2 1.2 0 0.648-0.528 1.2-1.2 1.2-0.648 0-1.2-0.528-1.2-1.2 0.024-0.672 0.552-1.2 1.2-1.2zM3.792 15.288c0.648 0 1.2 0.528 1.2 1.2 0 0.648-0.528 1.2-1.2 1.2s-1.2-0.528-1.2-1.2c0.024-0.672 0.552-1.2 1.2-1.2zM6.48 12.6v3.312h-0.48c-0.144-0.552-0.456-1.008-0.936-1.344-0.504-0.336-1.104-0.48-1.704-0.36-0.888 0.168-1.584 0.816-1.8 1.68h-0.48v-3.288h5.4zM6.48 9.624v1.896h-3.792l1.080-1.872h2.712z"></path>
                   </svg>
                   <span className="ms-1">
-                    Take 30% off when you spend $120{" "}
+                    {language === "en"
+                      ? "Take 30% off when you spend $120 "
+                      : language === "ru"
+                      ? "Получите скидку 30% при покупке от $120 "
+                      : "$120 xərclədikdə 30% endirim əldə edin "}
                     <Link to={"/shop"} className="carousel-links">
-                      Go shop
+                      {language === "en"
+                        ? "Go shop"
+                        : language === "ru"
+                        ? "Перейти в магазин"
+                        : "Mağazaya get"}
                     </Link>
                   </span>
                 </div>
@@ -203,8 +223,18 @@ const Header = () => {
                     <path d="M23.5 9.5c0.276 0 0.5-0.224 0.5-0.5v-4c0-0.276-0.224-0.5-0.5-0.5h-23c-0.276 0-0.5 0.224-0.5 0.5v4c0 0.276 0.224 0.5 0.5 0.5 1.379 0 2.5 1.122 2.5 2.5s-1.121 2.5-2.5 2.5c-0.276 0-0.5 0.224-0.5 0.5v4c0 0.276 0.224 0.5 0.5 0.5h23c0.276 0 0.5-0.224 0.5-0.5v-4c0-0.276-0.224-0.5-0.5-0.5-1.379 0-2.5-1.122-2.5-2.5s1.121-2.5 2.5-2.5zM20 12c0 1.76 1.306 3.221 3 3.464v3.036h-22v-3.036c1.694-0.243 3-1.704 3-3.464s-1.306-3.221-3-3.464v-3.036h22v3.036c-1.694 0.243-3 1.704-3 3.464zM6.5 10.5c-0.276 0-0.5 0.224-0.5 0.5v2c0 0.276 0.224 0.5 0.5 0.5s0.5-0.224 0.5-0.5v-2c-0-0.276-0.224-0.5-0.5-0.5zM6.5 6.5c-0.276 0-0.5 0.224-0.5 0.5v2c0 0.276 0.224 0.5 0.5 0.5s0.5-0.224 0.5-0.5v-2c-0-0.276-0.224-0.5-0.5-0.5zM6.5 14.5c-0.276 0-0.5 0.224-0.5 0.5v2c0 0.276 0.224 0.5 0.5 0.5s0.5-0.224 0.5-0.5v-2c-0-0.276-0.224-0.5-0.5-0.5zM17.5 10.5c-0.276 0-0.5 0.224-0.5 0.5v2c0 0.276 0.224 0.5 0.5 0.5s0.5-0.224 0.5-0.5v-2c0-0.276-0.224-0.5-0.5-0.5zM17.5 6.5c-0.276 0-0.5 0.224-0.5 0.5v2c0 0.276 0.224 0.5 0.5 0.5s0.5-0.224 0.5-0.5v-2c0-0.276-0.224-0.5-0.5-0.5zM17.5 14.5c-0.276 0-0.5 0.224-0.5 0.5v2c0 0.276 0.224 0.5 0.5 0.5s0.5-0.224 0.5-0.5v-2c0-0.276-0.224-0.5-0.5-0.5z"></path>
                   </svg>
                   <span className="ms-1">
-                    Free 2-days standard shipping on orders $255+
-                    <span className="carousel-links">Custom link</span>
+                    {language === "en"
+                      ? "Free 2-days standard shipping on orders $255+"
+                      : language === "ru"
+                      ? "Бесплатная доставка за 2 дня на заказы от $255"
+                      : "$255-dən yuxarı sifarişlərə pulsuz 2 günlük standart çatdırılma"}
+                    <span className="carousel-links">
+                      {language === "en"
+                        ? "Custom link"
+                        : language === "ru"
+                        ? "Пользовательская ссылка"
+                        : "Xüsusi bağlantı"}
+                    </span>
                   </span>
                 </div>
               </div>
@@ -250,7 +280,11 @@ const Header = () => {
               className="ms-1 hover-els"
               style={{ color: "#ffffff" }}
             >
-              Newsletter
+              {language === "en"
+                ? "Newsletter"
+                : language === "ru"
+                ? "Рассылка"
+                : "Bülleten"}
             </Link>
             <span className="split-stick"></span>
             <div
@@ -260,10 +294,25 @@ const Header = () => {
                   navigate("/cart/checkout/order-status");
                 } else {
                   Swal.fire({
-                    title: "Warning!",
-                    text: "Login First",
+                    title:
+                      language === "en"
+                        ? "Warning!"
+                        : language === "ru"
+                        ? "Предупреждение!"
+                        : "Xəbərdarlıq!",
+                    text:
+                      language === "en"
+                        ? "Login First"
+                        : language === "ru"
+                        ? "Войдите в систему"
+                        : "Əvvəlcə daxil olun",
                     icon: "warning",
-                    confirmButtonText: "Login",
+                    confirmButtonText:
+                      language === "en"
+                        ? "Login"
+                        : language === "ru"
+                        ? "Войти"
+                        : "Daxil ol",
                   }).then((res) => {
                     if (res.isConfirmed) {
                       navigate("/account/login");
@@ -276,7 +325,11 @@ const Header = () => {
                 icon={faTruck}
                 style={{ marginRight: "4px", width: "14px", height: "14px" }}
               />
-              Order Status
+              {language === "en"
+                ? "Order Status"
+                : language === "ru"
+                ? "Статус заказа"
+                : "Sifarişin vəziyyəti"}
             </div>
           </div>
         </div>
@@ -293,13 +346,20 @@ const Header = () => {
               <div className="search-box">
                 <input
                   type="text"
-                  placeholder="Type here..."
+                  placeholder={
+                    language === "en"
+                      ? "Type here..."
+                      : language === "ru"
+                      ? "Введите сюда..."
+                      : "Buraya yazın..."
+                  }
                   value={searchedProduct}
                   onChange={(e) => {
                     setSearchedProduct(e.target.value);
                     setShowInputResults(e.target.value.length > 0);
                   }}
                 />
+
                 <button type="submit">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -374,7 +434,11 @@ const Header = () => {
                     isActive ? "navlink navlink-active" : "navlink"
                   }
                 >
-                  Home
+                  {language === "en"
+                    ? "Home"
+                    : language === "ru"
+                    ? "Главная"
+                    : "Ana səhifə"}
                 </NavLink>
               </li>
               <li>
@@ -384,7 +448,11 @@ const Header = () => {
                     isActive ? "navlink navlink-active" : "navlink"
                   }
                 >
-                  Shop
+                  {language === "en"
+                    ? "Shop"
+                    : language === "ru"
+                    ? "Магазин"
+                    : "Mağaza"}
                 </NavLink>
               </li>
               <li>
@@ -394,7 +462,11 @@ const Header = () => {
                     isActive ? "navlink navlink-active" : "navlink"
                   }
                 >
-                  About Us
+                  {language === "en"
+                    ? "About Us"
+                    : language === "ru"
+                    ? "О нас"
+                    : "Haqqımızda"}
                 </NavLink>
               </li>
               <li>
@@ -404,7 +476,11 @@ const Header = () => {
                     isActive ? "navlink navlink-active" : "navlink"
                   }
                 >
-                  Contact Us
+                  {language === "en"
+                    ? "Contact Us"
+                    : language === "ru"
+                    ? "Контакты"
+                    : "Əlaqə"}
                 </NavLink>
               </li>
               <li>
@@ -414,7 +490,11 @@ const Header = () => {
                     isActive ? "navlink navlink-active" : "navlink"
                   }
                 >
-                  Blog
+                  {language === "en"
+                    ? "Blog"
+                    : language === "ru"
+                    ? "Блог"
+                    : "Bloq"}
                 </NavLink>
               </li>
               <li>

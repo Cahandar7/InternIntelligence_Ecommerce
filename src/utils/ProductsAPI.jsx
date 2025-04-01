@@ -21,7 +21,7 @@ const ProductsAPI = () => {
 
         const translatedProducts = data.map((product) => ({
           ...product,
-          title: product.title[language] || product.title["en"],
+          title: product.title["en"],
           description:
             product.description[language] || product.description["en"],
           category: product.category[language] || product.category["en"],

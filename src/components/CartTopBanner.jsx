@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useLocation } from "react-router-dom";
+import { LanguageContext } from "../contexts/LanguageContext";
 
 const CartTopBanner = () => {
   const location = useLocation();
+  const { language } = useContext(LanguageContext);
 
   const pathName = location.pathname.split("/").pop();
 
@@ -31,7 +33,11 @@ const CartTopBanner = () => {
               : "banner-h1"
           }`}
         >
-          shopping cart
+          {language === "en"
+            ? "Shopping Cart"
+            : language === "ru"
+            ? "Корзина"
+            : "Səbət"}
         </h1>
       </div>
       <div className="cart-top-banner-lines"></div>
@@ -54,7 +60,11 @@ const CartTopBanner = () => {
               : "banner-h1"
           }`}
         >
-          checkout
+          {language === "en"
+            ? "Checkout"
+            : language === "ru"
+            ? "Оформление заказа"
+            : "Ödəniş"}
         </h1>
       </div>
       <div className="cart-top-banner-lines"></div>
@@ -75,7 +85,11 @@ const CartTopBanner = () => {
               : "banner-h1"
           }`}
         >
-          order status
+          {language === "en"
+            ? "Order Status"
+            : language === "ru"
+            ? "Статус заказа"
+            : "Sifarişin statusu"}
         </h1>
       </div>
     </div>

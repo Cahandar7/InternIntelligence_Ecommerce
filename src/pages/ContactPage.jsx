@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import AnimatedTopHero from "../components/AnimatedTopHero";
+import { LanguageContext } from "../contexts/LanguageContext";
 
 const ContactPage = () => {
+  const { language } = useContext(LanguageContext);
+
   const [formData, setFormData] = useState({
     name: "",
     surname: "",
@@ -28,7 +31,15 @@ const ContactPage = () => {
 
   return (
     <div className="page">
-      <AnimatedTopHero page={"contact"} />
+      <AnimatedTopHero
+        page={
+          language === "en"
+            ? "Contact"
+            : language === "ru"
+            ? "Контакт"
+            : "Əlaqə"
+        }
+      />
       <div className="map-container">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d249179.66072117156!2d-74.259867!3d40.6976701!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24a1a1a1a1a1b%3A0x1b0d7c87a9b1a8b9!2sNew+York+City!5e0!3m2!1sen!2sus!4v1647983493285!5m2!1sen!2sus"
@@ -44,7 +55,13 @@ const ContactPage = () => {
         <form onSubmit={handleSubmit} className="form-container">
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="name">First name *</label>
+              <label htmlFor="name">
+                {language === "en"
+                  ? "First name *"
+                  : language === "ru"
+                  ? "Имя *"
+                  : "Ad *"}
+              </label>
               <input
                 type="text"
                 id="name"
@@ -56,7 +73,13 @@ const ContactPage = () => {
             </div>
 
             <div className="form-group">
-              <label htmlFor="surname">Last name *</label>
+              <label htmlFor="surname">
+                {language === "en"
+                  ? "Last name *"
+                  : language === "ru"
+                  ? "Фамилия *"
+                  : "Soyad *"}
+              </label>
               <input
                 type="text"
                 id="surname"
@@ -70,7 +93,13 @@ const ContactPage = () => {
 
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="email">Email address *</label>
+              <label htmlFor="email">
+                {language === "en"
+                  ? "Email address *"
+                  : language === "ru"
+                  ? "Адрес электронной почты *"
+                  : "E-poçt ünvanı *"}
+              </label>
               <input
                 type="email"
                 id="email"
@@ -82,7 +111,13 @@ const ContactPage = () => {
             </div>
 
             <div className="form-group">
-              <label htmlFor="phone">Phone number *</label>
+              <label htmlFor="phone">
+                {language === "en"
+                  ? "Phone number *"
+                  : language === "ru"
+                  ? "Номер телефона *"
+                  : "Telefon nömrəsi *"}
+              </label>
               <input
                 type="tel"
                 id="phone"
@@ -94,7 +129,13 @@ const ContactPage = () => {
           </div>
 
           <div className="form-group full-width">
-            <label htmlFor="message">Your Message</label>
+            <label htmlFor="message">
+              {language === "en"
+                ? "Your Message"
+                : language === "ru"
+                ? "Ваше сообщение"
+                : "Mesajınız"}
+            </label>
             <textarea
               id="message"
               name="message"
@@ -106,24 +147,58 @@ const ContactPage = () => {
           </div>
 
           <button type="submit" className="submit-btn">
-            SEND MESSAGE
+            {language === "en"
+              ? "SEND MESSAGE"
+              : language === "ru"
+              ? "ОТПРАВИТЬ СООБЩЕНИЕ"
+              : "MESAJ GÖNDƏR"}
           </button>
         </form>
         <div className="contact-texts">
-          <h2>Feel free to contact us anytime for support.</h2>
+          <h2>
+            {language === "en"
+              ? "Feel free to contact us anytime for support."
+              : language === "ru"
+              ? "Не стесняйтесь обращаться к нам в любое время за поддержкой."
+              : "Bizə dəstək üçün istənilən vaxt müraciət edə bilərsiniz."}
+          </h2>
           <p>
-            Our team is ready to assist with any inquiries you have. We provide
-            great support and are here to help with any questions. Reach out to
-            us for assistance—we're always available to help you.
+            {language === "en"
+              ? "Our team is ready to assist with any inquiries you have. We provide great support and are here to help with any questions. Reach out to us for assistance—we're always available to help you."
+              : language === "ru"
+              ? "Наша команда готова помочь вам с любыми вопросами. Мы предоставляем отличную поддержку и готовы помочь вам с любыми вопросами. Обращайтесь к нам за помощью — мы всегда готовы помочь."
+              : "Komandamız hər hansı bir sorğunuzla kömək etməyə hazırdır. Biz mükəmməl dəstək təqdim edirik və hər hansı bir sualla kömək etməyə hazırıq. Bizə müraciət edin — biz hər zaman kömək etməyə hazırıq."}
           </p>
           <hr />
           <p>
-            <span>30 South Avenue San Francisco</span>
-            <span>Phone: +78 123 456 789</span>
-            <span style={{ color: "#c62828" }}>
-              Email:Support@lifestyle.com
+            <span>
+              {language === "en"
+                ? "30 South Avenue San Francisco"
+                : language === "ru"
+                ? "30 Южный проспект Сан-Франциско"
+                : "30 Cənub Prospekti San-Fransisko"}
             </span>
-            <span style={{ color: "#c62828" }}>www.lifestyle.com</span>
+            <span>
+              {language === "en"
+                ? "Phone: +78 123 456 789"
+                : language === "ru"
+                ? "Телефон: +78 123 456 789"
+                : "Telefon: +78 123 456 789"}
+            </span>
+            <span style={{ color: "#c62828" }}>
+              {language === "en"
+                ? "Email:Support@lifestyle.com"
+                : language === "ru"
+                ? "Email:Support@lifestyle.com"
+                : "E-poçt:Support@lifestyle.com"}
+            </span>
+            <span style={{ color: "#c62828" }}>
+              {language === "en"
+                ? "www.lifestyle.com"
+                : language === "ru"
+                ? "www.lifestyle.com"
+                : "www.lifestyle.com"}
+            </span>
           </p>
           <hr />
         </div>

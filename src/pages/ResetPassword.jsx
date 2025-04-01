@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { faEye, faEyeSlash, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useNavigate } from "react-router-dom";
 import supabase from "../supabase/supabaseClient";
 import Swal from "sweetalert2";
+import { LanguageContext } from "../contexts/LanguageContext";
 
 const ResetPassword = () => {
+  const { language } = useContext(LanguageContext);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -25,16 +27,36 @@ const ResetPassword = () => {
     if (password !== confirmPassword) {
       Swal.fire({
         icon: "error",
-        title: "Oops...",
-        text: "Passwords do not match!",
+        title:
+          language === "en"
+            ? "Oops..."
+            : language === "ru"
+            ? "Ой..."
+            : "Hups...",
+        text:
+          language === "en"
+            ? "Passwords do not match!"
+            : language === "ru"
+            ? "Пароли не совпадают!"
+            : "Şifrələr uyğun gəlmir!",
       });
       return;
     }
 
     if (!password.trim() || !confirmPassword.trim()) {
       Swal.fire({
-        title: "Warning!",
-        text: "Password cannot be empty.",
+        title:
+          language === "en"
+            ? "Warning!"
+            : language === "ru"
+            ? "Предупреждение!"
+            : "Xəbərdarlıq!",
+        text:
+          language === "en"
+            ? "Password cannot be empty."
+            : language === "ru"
+            ? "Пароль не может быть пустым."
+            : "Şifrə boş ola bilməz.",
         icon: "warning",
       });
       return;
@@ -43,8 +65,18 @@ const ResetPassword = () => {
     if (password.length < 8) {
       Swal.fire({
         icon: "warning",
-        title: "Weak Password",
-        text: "Password should be at least 8 characters long.",
+        title:
+          language === "en"
+            ? "Weak Password"
+            : language === "ru"
+            ? "Слабый пароль"
+            : "Zəif şifrə",
+        text:
+          language === "en"
+            ? "Password should be at least 8 characters long."
+            : language === "ru"
+            ? "Пароль должен быть не менее 8 символов."
+            : "Şifrə ən azı 8 simvol olmalıdır.",
       });
       return;
     }
@@ -60,8 +92,18 @@ const ResetPassword = () => {
 
       Swal.fire({
         icon: "success",
-        title: "Password Reset Successfully!",
-        text: "Your password has been updated.",
+        title:
+          language === "en"
+            ? "Password Reset Successfully!"
+            : language === "ru"
+            ? "Пароль успешно сброшен!"
+            : "Şifrə uğurla sıfırlandı!",
+        text:
+          language === "en"
+            ? "Your password has been updated."
+            : language === "ru"
+            ? "Ваш пароль был обновлен."
+            : "Şifrəniz yeniləndi.",
       });
 
       setTimeout(() => {
@@ -70,8 +112,18 @@ const ResetPassword = () => {
     } catch (err) {
       Swal.fire({
         icon: "error",
-        title: "Oops...",
-        text: err.message || "Something went wrong. Try again.",
+        title:
+          language === "en"
+            ? "Oops..."
+            : language === "ru"
+            ? "Ой..."
+            : "Hups...",
+        text:
+          err.message || language === "en"
+            ? "Something went wrong. Try again."
+            : language === "ru"
+            ? "Что-то пошло не так. Попробуйте снова."
+            : "Bir şey səhv getdi. Yenidən cəhd edin.",
       });
     }
   };
@@ -80,12 +132,24 @@ const ResetPassword = () => {
     <div className="account-box page">
       <div className="login-register-wrapper">
         <form onSubmit={handleSubmit}>
-          <h5 className="wrapper-title">Reset Your Password</h5>
+          <h5 className="wrapper-title">
+            {language === "en"
+              ? "Reset Your Password"
+              : language === "ru"
+              ? "Сбросить пароль"
+              : "Şifrənizi sıfırlayın"}
+          </h5>
 
           <div className="input-box">
             <input
               type={passwordVisible ? "text" : "password"}
-              placeholder="New Password"
+              placeholder={
+                language === "en"
+                  ? "New Password"
+                  : language === "ru"
+                  ? "Новый пароль"
+                  : "Yeni şifrə"
+              }
               value={password}
               onChange={handlePasswordChange}
               required
@@ -112,7 +176,13 @@ const ResetPassword = () => {
           <div className="input-box">
             <input
               type={confirmPasswordVisible ? "text" : "password"}
-              placeholder="Confirm Password"
+              placeholder={
+                language === "en"
+                  ? "Confirm Password"
+                  : language === "ru"
+                  ? "Подтвердите пароль"
+                  : "Şifrəni təsdiq edin"
+              }
               value={confirmPassword}
               onChange={handleConfirmPasswordChange}
               required
@@ -138,14 +208,26 @@ const ResetPassword = () => {
 
           <div className="btn-box">
             <button type="submit" className="submit-btn">
-              Reset Password
+              {language === "en"
+                ? "Reset Password"
+                : language === "ru"
+                ? "Сбросить пароль"
+                : "Şifrəni sıfırla"}
             </button>
           </div>
 
           <div className="go-register">
-            Remember password?
+            {language === "en"
+              ? "Remember password?"
+              : language === "ru"
+              ? "Помните пароль?"
+              : "Şifrənizi xatırlayırsınız? "}
             <Link to={"/account/login"} className="go">
-              Login
+              {language === "en"
+                ? "Login"
+                : language === "ru"
+                ? "Войти"
+                : "Daxil ol"}
             </Link>
           </div>
         </form>

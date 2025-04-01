@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Card from "react-bootstrap/Card";
 import { faEye, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { useCart } from "react-use-cart";
 import { useWishlist } from "../contexts/WishlistContext";
 import slugify from "slugify";
+import { LanguageContext } from "../contexts/LanguageContext";
 
 const ProductCard = ({
   show,
@@ -20,6 +21,7 @@ const ProductCard = ({
   const { addItem } = useCart();
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
   const [isHovered, setIsHovered] = useState(false);
+  const { language } = useContext(LanguageContext);
 
   return (
     <Card
@@ -79,7 +81,11 @@ const ProductCard = ({
                 window.location.assign("/cart");
               }}
             >
-              Add to Cart
+              {language === "en"
+                ? "Add to Cart"
+                : language === "ru"
+                ? "Добавить в корзину"
+                : "Səbətə əlavə et"}
             </span>
           ) : (
             <span className="prod-card-price">${price}</span>

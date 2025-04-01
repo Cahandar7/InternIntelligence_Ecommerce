@@ -1,13 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { motion } from "framer-motion";
 import banner_img1 from "../assets/images/home_banner1.png";
 import banner_img2 from "../assets/images/home_banner2.png";
 import banner_img3 from "../assets/images/home_banner3.png";
 import banner_img4 from "../assets/images/home_banner4.png";
 import { Link } from "react-router-dom";
+import { LanguageContext } from "../contexts/LanguageContext";
 
 const images1 = [banner_img1, banner_img2];
 const images2 = [banner_img3, banner_img4];
+
 const fadeVariants = {
   "fade-left": {
     initial: { opacity: 0, x: -100 },
@@ -20,33 +22,6 @@ const fadeVariants = {
     transition: { duration: 1, ease: "easeInOut", delay: 0.3 },
   },
 };
-
-const slides = [
-  {
-    images: images1,
-    bg_effect: "first-bg",
-    content: {
-      heading: "HOODIES",
-      heading2: "JACKETS",
-      symbol: "&",
-      subheading: "CASUAL SHIRTS",
-      description: "8THEME QUALITY GOODS",
-      buttonText: "READ MORE",
-    },
-  },
-  {
-    images: images2,
-    bg_effect: "second-bg",
-    content: {
-      heading: "LOVE THE",
-      heading2: "COLORS",
-      symbol: "",
-      subheading: "SWEATSHIRTS 2016",
-      description: "STYLE AND COMFORT",
-      buttonText: "READ MORE",
-    },
-  },
-];
 
 const HeroBanner = ({ images, opacity, content, bg_effect }) => {
   const [xPosition, setXPosition] = useState(0);
@@ -160,10 +135,88 @@ const HeroBanner = ({ images, opacity, content, bg_effect }) => {
 };
 
 const HomeBanner = () => {
+  const { language } = useContext(LanguageContext);
   const [currentBannerIndex, setCurrentBannerIndex] = useState(0);
   const [opacity, setOpacity] = useState(1);
   const [fadeKey, setFadeKey] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+
+  const slides = [
+    {
+      images: images1,
+      bg_effect: "first-bg",
+      content: {
+        heading:
+          language === "en"
+            ? "HOODIES"
+            : language === "ru"
+            ? "Толстовки"
+            : "Kapüşonlu Yengilər",
+        heading2:
+          language === "en"
+            ? "JACKETS"
+            : language === "ru"
+            ? "Куртки"
+            : "Jaketlər",
+        symbol: "&",
+        subheading:
+          language === "en"
+            ? "CASUAL SHIRTS"
+            : language === "ru"
+            ? "Повседневные рубашки"
+            : "Gündəlik köynəklər",
+        description:
+          language === "en"
+            ? "8THEME QUALITY GOODS"
+            : language === "ru"
+            ? "Товары качества 8THEME"
+            : "8THEME KEYFİYYƏT MƏHSULLARI",
+        buttonText:
+          language === "en"
+            ? "READ MORE"
+            : language === "ru"
+            ? "Читать далее"
+            : "Daha çox oxu",
+      },
+    },
+    {
+      images: images2,
+      bg_effect: "second-bg",
+      content: {
+        heading:
+          language === "en"
+            ? "LOVE THE"
+            : language === "ru"
+            ? "ЛЮБИТЕ"
+            : "SEVİN",
+        heading2:
+          language === "en"
+            ? "COLORS"
+            : language === "ru"
+            ? "ЦВЕТА"
+            : "RƏNGLƏR",
+        symbol: "",
+        subheading:
+          language === "en"
+            ? "SWEATSHIRTS 2016"
+            : language === "ru"
+            ? "СВИТШОТЫ 2016"
+            : "SWETŞİRTLƏR 2016",
+        description:
+          language === "en"
+            ? "STYLE AND COMFORT"
+            : language === "ru"
+            ? "СТИЛЬ И КОМФОРТ"
+            : "STİL VƏ RAHATLIQ",
+        buttonText:
+          language === "en"
+            ? "READ MORE"
+            : language === "ru"
+            ? "Читать далее"
+            : "Daha çox oxu",
+      },
+    },
+  ];
 
   const handlePrevNext = () => {
     if (isTransitioning) return;
