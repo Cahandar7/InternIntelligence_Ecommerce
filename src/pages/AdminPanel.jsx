@@ -11,11 +11,13 @@ import {
 import { LanguageContext } from "../contexts/LanguageContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 const AdminPanel = () => {
   const products = useSelector((p) => p);
   const dispatch = useDispatch();
   const { language, setLanguage } = useContext(LanguageContext);
+  const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const [editMode, setEditMode] = useState(false);
   const [selectedProductId, setSelectedProductId] = useState(null);
@@ -155,18 +157,32 @@ const AdminPanel = () => {
             </li>
           </ul>
         </div>
-        <span
-          className="admin-add-prod-btn"
-          onClick={() => {
-            setShow(true);
-          }}
-        >
-          {language === "en"
-            ? "Add product"
-            : language === "ru"
-            ? "Добавить товар"
-            : "Məhsul əlavə et"}
-        </span>
+        <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
+          <span
+            className="admin-add-prod-btn"
+            onClick={() => {
+              setShow(true);
+            }}
+          >
+            {language === "en"
+              ? "Add product"
+              : language === "ru"
+              ? "Добавить товар"
+              : "Məhsul əlavə et"}
+          </span>
+          <span
+            className="admin-add-prod-btn"
+            onClick={() => {
+              navigate("/");
+            }}
+          >
+            {language === "en"
+              ? "Back Home"
+              : language === "ru"
+              ? "Назад на главную"
+              : "Geri Qayıt"}
+          </span>
+        </div>
       </header>
 
       <div className="admin-table-container">
