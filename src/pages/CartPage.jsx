@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 import CartTopBanner from "../components/CartTopBanner";
 import supabase from "../supabase/supabaseClient";
 import { LanguageContext } from "../contexts/LanguageContext";
+import { CurrencyContext } from "../contexts/CurrencyContext";
 
 const CartPage = () => {
   const { language } = useContext(LanguageContext);
@@ -16,6 +17,7 @@ const CartPage = () => {
   const [promocodes, setPromocodes] = useState(["UNEC777", "TRY6C"]);
   const [discountApplied, setDiscountApplied] = useState(false);
   const [discountAmount, setDiscountAmount] = useState(0);
+  const { convertCurrency } = useContext(CurrencyContext);
 
   const navigate = useNavigate();
   const {
@@ -184,7 +186,7 @@ const CartPage = () => {
                           </button>
                         </div>
                       </td>
-                      <td>${item.price}</td>
+                      <td>{convertCurrency(item.price)}</td>
                       <td style={{ opacity: "0.5" }}>0{item.sku}</td>
                       <td>
                         <div className="quantity-box">
@@ -214,7 +216,7 @@ const CartPage = () => {
                           </button>
                         </div>
                       </td>
-                      <td>${(item.price * item.quantity).toFixed(2)}</td>
+                      <td>{convertCurrency(item.price * item.quantity)}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -285,13 +287,7 @@ const CartPage = () => {
                     ? "Подытог"
                     : "Ara cəm"}
                 </p>
-                <span>
-                  $
-                  {new Intl.NumberFormat("en-US", {
-                    minimumFractionDigits: 2,
-                    maximumFractionDigits: 2,
-                  }).format(cartTotal)}
-                </span>
+                <span>{convertCurrency(cartTotal)}</span>
               </div>
 
               <div className="shipping">
@@ -304,10 +300,11 @@ const CartPage = () => {
                 </p>
                 <span>
                   {language === "en"
-                    ? "Flat Rate: $5.00"
+                    ? "Flat Rate: "
                     : language === "ru"
-                    ? "Фиксированная ставка: $5.00"
-                    : "Sabit tarif: $5.00"}
+                    ? "Фиксированная ставка: "
+                    : "Sabit tarif: "}{" "}
+                  {convertCurrency(5)}
                 </span>
               </div>
 
@@ -328,28 +325,14 @@ const CartPage = () => {
                     }}
                   >
                     <span className="line-through-p">
-                      $
-                      {new Intl.NumberFormat("en-US", {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2,
-                      }).format(cartTotal + 5)}
+                      {convertCurrency(cartTotal + 5)}
                     </span>
                     <span>
-                      $
-                      {new Intl.NumberFormat("en-US", {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2,
-                      }).format(cartTotal + 5 - discountAmount)}
+                      {convertCurrency(cartTotal + 5 - discountAmount)}
                     </span>
                   </div>
                 ) : (
-                  <span>
-                    $
-                    {new Intl.NumberFormat("en-US", {
-                      minimumFractionDigits: 2,
-                      maximumFractionDigits: 2,
-                    }).format(cartTotal + 5)}
-                  </span>
+                  <span>{convertCurrency(cartTotal + 5)}</span>
                 )}
               </div>
 

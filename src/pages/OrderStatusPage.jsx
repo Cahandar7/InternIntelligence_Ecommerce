@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import CartTopBanner from "../components/CartTopBanner";
 import { Link, useLocation } from "react-router-dom";
 import { LanguageContext } from "../contexts/LanguageContext";
+import { CurrencyContext } from "../contexts/CurrencyContext";
 
 const OrderStatusPage = () => {
   const { language } = useContext(LanguageContext);
@@ -10,6 +11,7 @@ const OrderStatusPage = () => {
   const totalSum = location_order.state?.totalSum;
   const paymentMethod = location_order.state?.paymentMethod;
   const date_time = location_order.state?.date_time;
+  const { convertCurrency } = useContext(CurrencyContext);
 
   const formattedDate = date_time
     ? new Date(date_time).toLocaleString("en-US", {
@@ -114,13 +116,7 @@ const OrderStatusPage = () => {
                     ? "Итого"
                     : "Toplam"}
                 </p>
-                <span>
-                  $
-                  {new Intl.NumberFormat("en-US", {
-                    minimumFractionDigits: 2,
-                    maximumFractionDigits: 2,
-                  }).format(totalSum)}
-                </span>
+                <span>{convertCurrency(totalSum)}</span>
               </div>
             </>
           )}

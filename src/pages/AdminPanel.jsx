@@ -9,6 +9,7 @@ import {
   delete_product,
 } from "../redux_tools/actions/productActions";
 import { LanguageContext } from "../contexts/LanguageContext";
+import { CurrencyContext } from "../contexts/CurrencyContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
@@ -17,6 +18,8 @@ const AdminPanel = () => {
   const products = useSelector((p) => p);
   const dispatch = useDispatch();
   const { language, setLanguage } = useContext(LanguageContext);
+  const { currency, setCurrency, convertCurrency } =
+    useContext(CurrencyContext);
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const [editMode, setEditMode] = useState(false);
@@ -103,59 +106,98 @@ const AdminPanel = () => {
   return (
     <div className="admin-panel">
       <header className="admin-panel-header">
-        <div className="dropdown">
-          <button
-            className="dropdown-toggle"
-            type="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            {languageNames[language] || ""}
-          </button>
-          <ul className="dropdown-menu">
-            <li>
-              <button
-                className="dropdown-item"
-                onClick={() => {
-                  setLanguage("en");
-                }}
-              >
-                {language === "en"
-                  ? "English"
-                  : language === "ru"
-                  ? "Английкий"
-                  : "İnglis"}
-              </button>
-            </li>
-            <li>
-              <button
-                className="dropdown-item"
-                onClick={() => {
-                  setLanguage("ru");
-                }}
-              >
-                {language === "en"
-                  ? "Russian"
-                  : language === "ru"
-                  ? "Русский"
-                  : "Rus"}
-              </button>
-            </li>
-            <li>
-              <button
-                className="dropdown-item"
-                onClick={() => {
-                  setLanguage("az");
-                }}
-              >
-                {language === "en"
-                  ? "Azerbaijan"
-                  : language === "ru"
-                  ? "Азербайджан"
-                  : "Azərbaycan"}
-              </button>
-            </li>
-          </ul>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <div className="dropdown">
+            <button
+              className="dropdown-toggle"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              {languageNames[language] || ""}
+            </button>
+            <ul className="dropdown-menu">
+              <li>
+                <button
+                  className="dropdown-item"
+                  onClick={() => {
+                    setLanguage("en");
+                  }}
+                >
+                  {language === "en"
+                    ? "English"
+                    : language === "ru"
+                    ? "Английкий"
+                    : "İnglis"}
+                </button>
+              </li>
+              <li>
+                <button
+                  className="dropdown-item"
+                  onClick={() => {
+                    setLanguage("ru");
+                  }}
+                >
+                  {language === "en"
+                    ? "Russian"
+                    : language === "ru"
+                    ? "Русский"
+                    : "Rus"}
+                </button>
+              </li>
+              <li>
+                <button
+                  className="dropdown-item"
+                  onClick={() => {
+                    setLanguage("az");
+                  }}
+                >
+                  {language === "en"
+                    ? "Azerbaijan"
+                    : language === "ru"
+                    ? "Азербайджан"
+                    : "Azərbaycan"}
+                </button>
+              </li>
+            </ul>
+          </div>
+          <span className="split-stick"></span>
+          <div className="dropdown">
+            <button
+              className="dropdown-toggle"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              {currency}
+            </button>
+            <ul className="dropdown-menu">
+              <li>
+                <button
+                  className="dropdown-item"
+                  onClick={() => setCurrency("USD")}
+                >
+                  USD
+                </button>
+              </li>
+              <li>
+                <button
+                  className="dropdown-item"
+                  onClick={() => setCurrency("RUB")}
+                >
+                  RUB
+                </button>
+              </li>
+              <li>
+                <button
+                  className="dropdown-item"
+                  onClick={() => setCurrency("AZN")}
+                >
+                  AZN
+                </button>
+              </li>
+            </ul>
+          </div>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
           <span
@@ -307,7 +349,7 @@ const AdminPanel = () => {
                 </td>
                 <td className="image-column">{product.image} </td>
                 <td className="price-column">
-                  ${Number(product.price).toFixed(2)}
+                  {convertCurrency(product.price)}
                 </td>
                 <td className="sku-column">0{product.sku}</td>
                 <td className="category-column">{product.category}</td>

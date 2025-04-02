@@ -10,6 +10,7 @@ import size_guide_img from "../assets/images/size_guide.png";
 import slugify from "slugify";
 import { useWishlist } from "../contexts/WishlistContext";
 import { LanguageContext } from "../contexts/LanguageContext";
+import { CurrencyContext } from "../contexts/CurrencyContext";
 
 const ProductDetails = () => {
   const [activeColor, setActiveColor] = useState("Choose an option");
@@ -17,6 +18,7 @@ const ProductDetails = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const { language } = useContext(LanguageContext);
+  const { currency, convertCurrency } = useContext(CurrencyContext);
   const [isZoomed, setIsZoomed] = useState(false);
   const [position, setPosition] = useState({ top: 0, left: 0 });
 
@@ -149,7 +151,7 @@ const ProductDetails = () => {
           <Col sm={12} md={6} lg={4} className="product-details-texts">
             <p className="product-details-title">{selectedProd.title}</p>
             <p className="product-details-price">
-              ${Number(selectedProd.price).toFixed(2)}
+              {convertCurrency(selectedProd.price)}
             </p>
             <div>
               {[...Array(Math.floor(selectedProd.rating / 2))].map(
@@ -483,7 +485,9 @@ const ProductDetails = () => {
                       }}
                     >
                       <h1 className="its-title">{newItem.title}</h1>
-                      <p className="its-title">${newItem.price}</p>
+                      <p className="its-title">
+                        {convertCurrency(newItem.price)}
+                      </p>
                     </div>
                   </Col>
                 ))}

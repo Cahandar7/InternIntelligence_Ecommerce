@@ -5,10 +5,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import App from "./App.jsx";
 import { Provider } from "react-redux";
+import store from "./redux_tools/store/productStore.js";
 import { CartProvider } from "react-use-cart";
 import { WishlistProvider } from "./contexts/WishlistContext.jsx";
 import LanguageProvider from "./contexts/LanguageContext.jsx";
-import store from "./redux_tools/store/productStore.js";
+import CurrencyProvider from "./contexts/CurrencyContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -16,7 +17,9 @@ createRoot(document.getElementById("root")).render(
       <CartProvider>
         <WishlistProvider>
           <LanguageProvider>
-            <App />
+            <CurrencyProvider>
+              <App />
+            </CurrencyProvider>
           </LanguageProvider>
         </WishlistProvider>
       </CartProvider>

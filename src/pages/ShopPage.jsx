@@ -13,11 +13,13 @@ import ProductCard from "../components/ProductCard";
 import AnimatedTopHero from "../components/AnimatedTopHero";
 import { useSelector } from "react-redux";
 import { LanguageContext } from "../contexts/LanguageContext";
+import { CurrencyContext } from "../contexts/CurrencyContext";
 import product_not_found from "../assets/images/product_not_found.gif";
 
 const ShopPage = () => {
   const products = useSelector((p) => p);
   const { language } = useContext(LanguageContext);
+  const { convertCurrency } = useContext(CurrencyContext);
   const [activeItem, setActiveItem] = useState(
     language === "en"
       ? "Default Sorting"
@@ -68,7 +70,6 @@ const ShopPage = () => {
       filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
     } else if (activeItem === "Sort by price: low to high") {
       filtered.sort((a, b) => a.price - b.price);
-      bun;
     } else if (activeItem === "Sort by price: high to low") {
       filtered.sort((a, b) => b.price - a.price);
     }
@@ -233,11 +234,19 @@ const ShopPage = () => {
                 <Accordion.Body className="acc1-body">
                   <Form>
                     <Form.Label>
-                      {language === "en"
-                        ? `Price: $${minPrice} - $${maxPrice}`
-                        : language === "ru"
-                        ? `Цена: ${minPrice} - ${maxPrice} $`
-                        : `Qiymət: ${minPrice} - ${maxPrice} $`}
+                      {language === "en" ? (
+                        <span>
+                          Price: {convertCurrency(0)} - {convertCurrency(1000)}
+                        </span>
+                      ) : language === "ru" ? (
+                        <span>
+                          Цена: {convertCurrency(0)} - {convertCurrency(1000)}
+                        </span>
+                      ) : (
+                        <span>
+                          Qiymət: {convertCurrency(0)} - {convertCurrency(1000)}
+                        </span>
+                      )}
                     </Form.Label>
 
                     <div className="range-slider">

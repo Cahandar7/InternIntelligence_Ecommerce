@@ -5,6 +5,7 @@ import axios from "axios";
 import { useCart } from "react-use-cart";
 import { useLocation, useNavigate } from "react-router-dom";
 import { LanguageContext } from "../contexts/LanguageContext";
+import { CurrencyContext } from "../contexts/CurrencyContext";
 
 const CheckOutPage = () => {
   const { language } = useContext(LanguageContext);
@@ -13,6 +14,7 @@ const CheckOutPage = () => {
   const [paymentMethod, setPaymentMethod] = useState("Direct Bank Transfer");
   const loaction_ckeckout = useLocation();
   const totalSum = loaction_ckeckout.state?.totalSum;
+  const { convertCurrency } = useContext(CurrencyContext);
 
   const { cartTotal, items } = useCart();
   const formRef = useRef();
@@ -233,14 +235,15 @@ const CheckOutPage = () => {
                 <div>
                   <p key={index}>{item.title}</p>
                   <p key={index}>
-                    {item.quantity} × ${Number(item.price).toFixed(2)}
+                    {item.quantity} × {convertCurrency(item.price)}
                   </p>
                   <p key={index}>
                     {language === "en"
-                      ? `Subtotal: $${item.itemTotal.toFixed(2)}`
+                      ? "Subtotal: "
                       : language === "ru"
-                      ? `Подытог: $${item.itemTotal.toFixed(2)}`
-                      : `Ümumi məbləğ: $${item.itemTotal.toFixed(2)}`}
+                      ? "Подытог: "
+                      : "Ümumi məbləğ: "}
+                    {convertCurrency(item.itemTotal)}
                   </p>
                 </div>
               ))}
@@ -254,13 +257,7 @@ const CheckOutPage = () => {
                   ? "Подытог"
                   : "Ara cəm"}
               </p>
-              <span>
-                $
-                {new Intl.NumberFormat("en-US", {
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 2,
-                }).format(cartTotal)}
-              </span>
+              <span>{convertCurrency(cartTotal)}</span>
             </div>
             <div className="shipping">
               <p>
@@ -270,7 +267,7 @@ const CheckOutPage = () => {
                   ? "Доставка"
                   : "Çatdırılma"}
               </p>
-              <span>+$5.00</span>
+              <span>{convertCurrency(5)}</span>
             </div>
             <div className="shipping">
               <p>
@@ -280,10 +277,7 @@ const CheckOutPage = () => {
                   ? "Скидки"
                   : "Endirimlər"}
               </p>
-              <span>
-                -$
-                {(cartTotal + 5 - totalSum).toFixed(2)}
-              </span>
+              <span>{convertCurrency(cartTotal + 5 - totalSum)}</span>
             </div>
             <div className="total">
               <p>
@@ -293,13 +287,7 @@ const CheckOutPage = () => {
                   ? "Итого"
                   : "Ümumi"}
               </p>
-              <span>
-                $
-                {new Intl.NumberFormat("en-US", {
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 2,
-                }).format(totalSum)}
-              </span>
+              <span>{convertCurrency(totalSum)}</span>
             </div>
             <h2>
               {language === "en"

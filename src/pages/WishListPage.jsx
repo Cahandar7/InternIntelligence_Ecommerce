@@ -7,6 +7,7 @@ import { faEye, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useCart } from "react-use-cart";
 import { LanguageContext } from "../contexts/LanguageContext";
+import { CurrencyContext } from "../contexts/CurrencyContext";
 
 const WishListPage = () => {
   const { language } = useContext(LanguageContext);
@@ -14,6 +15,7 @@ const WishListPage = () => {
     useWishlist();
 
   const { addItem } = useCart();
+  const { convertCurrency } = useContext(CurrencyContext);
 
   const navigate = useNavigate();
 
@@ -145,7 +147,7 @@ const WishListPage = () => {
                       color: "#888888",
                     }}
                   >
-                    ${Number(item.price).toFixed(2)}
+                    {convertCurrency(item.price)}
                   </td>
 
                   <td style={{ color: "#888888" }}>

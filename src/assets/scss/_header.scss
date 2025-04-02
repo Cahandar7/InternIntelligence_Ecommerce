@@ -9,6 +9,14 @@
   color: #fff;
 }
 
+.split-stick {
+  width: 2px;
+  height: 20px;
+  background-color: #fff;
+  opacity: 0.4;
+  margin: 0 12px;
+}
+
 .top-h {
   width: 100%;
   display: flex;
@@ -17,13 +25,6 @@
   padding: 10px;
   border-bottom: 1px solid #2f2f2f;
   font-size: 14px !important;
-  .split-stick {
-    width: 2px;
-    height: 20px;
-    background-color: #fff;
-    opacity: 0.4;
-    margin: 0 12px;
-  }
 }
 
 .top-h .top-h-left {

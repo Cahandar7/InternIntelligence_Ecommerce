@@ -66,7 +66,6 @@
   margin-top: 100px;
   padding: 10px 20px;
   .admin-table {
-    table-layout: fixed;
     min-width: 100%;
     background-color: transparent !important;
     th,
@@ -78,53 +77,4 @@
       text-align: center !important;
     }
   }
-}
-
-.admin-panel .admin-table-conatiner .admin-table .id-column {
-  width: 50px;
-}
-.admin-panel .admin-table-conatiner .admin-table .title-column {
-  width: 150px;
-}
-.admin-panel .admin-table-conatiner .admin-table .description-column {
-  width: 300px;
-}
-.admin-panel .admin-table-conatiner .admin-table .price-column {
-  width: 100px;
-}
-.admin-panel .admin-table-conatiner .admin-table .sku-column {
-  width: 100px;
-}
-.admin-panel .admin-table-conatiner .admin-table .category-column {
-  width: 100px;
-}
-.admin-panel .admin-table-conatiner .admin-table .brand-column {
-  width: 100px;
-}
-.admin-panel .admin-table-conatiner .admin-table .image-column {
-  width: 300px;
-}
-.admin-panel .admin-table-conatiner .admin-table .rating-column {
-  width: 100px;
-}
-.admin-panel .admin-table-conatiner .admin-table .gender-column {
-  width: 100px;
-}
-.admin-panel .admin-table-conatiner .admin-table .weight-column {
-  width: 80px;
-}
-.admin-panel .admin-table-conatiner .admin-table .dimensions-column {
-  width: 200px;
-}
-.admin-panel .admin-table-conatiner .admin-table .washcare-column {
-  width: 200px;
-}
-.admin-panel .admin-table-conatiner .admin-table .composition-column {
-  width: 200px;
-}
-.admin-panel .admin-table-conatiner .admin-table .stockstatus-column {
-  width: 150px;
-}
-.admin-panel .admin-table-conatiner .admin-table .actions-column {
-  width: 150px;
 }

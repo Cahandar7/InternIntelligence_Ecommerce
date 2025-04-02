@@ -7,6 +7,7 @@ import { useCart } from "react-use-cart";
 import { useWishlist } from "../contexts/WishlistContext";
 import slugify from "slugify";
 import { LanguageContext } from "../contexts/LanguageContext";
+import { CurrencyContext } from "../contexts/CurrencyContext";
 
 const ProductCard = ({
   show,
@@ -22,6 +23,7 @@ const ProductCard = ({
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
   const [isHovered, setIsHovered] = useState(false);
   const { language } = useContext(LanguageContext);
+  const { convertCurrency } = useContext(CurrencyContext);
 
   return (
     <Card
@@ -88,7 +90,7 @@ const ProductCard = ({
                 : "Səbətə əlavə et"}
             </span>
           ) : (
-            <span className="prod-card-price">${price}</span>
+            <span className="prod-card-price">{convertCurrency(price)}</span>
           )}
         </Card.Text>
       </Card.Body>

@@ -17,6 +17,7 @@ import xstore_logo from "../assets/images/xstore_logo.png";
 import { useWishlist } from "../contexts/WishlistContext";
 import Swal from "sweetalert2";
 import { LanguageContext } from "../contexts/LanguageContext";
+import { CurrencyContext } from "../contexts/CurrencyContext";
 
 const Header = () => {
   const [totalUniqueItems, setTotalUniqueItems] = useState();
@@ -29,6 +30,8 @@ const Header = () => {
   const { scrollY } = useScroll();
   const { wishlistItemsCount } = useWishlist();
   const { language, setLanguage } = useContext(LanguageContext);
+  const { currency, setCurrency } = useContext(CurrencyContext);
+
   const languageNames = {
     en: "English",
     ru: "Русский",
@@ -156,7 +159,9 @@ const Header = () => {
                 </li>
               </ul>
             </div>
+
             <span className="split-stick"></span>
+
             <div className="dropdown">
               <button
                 className="dropdown-toggle"
@@ -164,17 +169,32 @@ const Header = () => {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                USD / $
+                {currency}
               </button>
               <ul className="dropdown-menu">
                 <li>
-                  <button className="dropdown-item">USD / $</button>
+                  <button
+                    className="dropdown-item"
+                    onClick={() => setCurrency("USD")}
+                  >
+                    USD
+                  </button>
                 </li>
                 <li>
-                  <button className="dropdown-item">RUB / ₽</button>
+                  <button
+                    className="dropdown-item"
+                    onClick={() => setCurrency("RUB")}
+                  >
+                    RUB
+                  </button>
                 </li>
                 <li>
-                  <button className="dropdown-item">AZN / ₼</button>
+                  <button
+                    className="dropdown-item"
+                    onClick={() => setCurrency("AZN")}
+                  >
+                    AZN
+                  </button>
                 </li>
               </ul>
             </div>
