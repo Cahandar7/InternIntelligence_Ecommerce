@@ -1,0 +1,124 @@
+@keyframes hero-bg-effect {
+  0% {
+    width: 40%;
+  }
+  100% {
+    width: 10%;
+  }
+}
+
+.page {
+  padding-top: 185px;
+}
+
+.hero-box {
+  max-width: 100vw;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 25px 0;
+  margin: 0;
+  position: relative;
+
+  .hero-home {
+    font-size: 14px;
+    margin: 0;
+    z-index: 3;
+  }
+
+  .hero-page {
+    font-size: 20px;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin: 0;
+    z-index: 3;
+  }
+
+  .bg-effect {
+    position: absolute;
+    width: 40%;
+    height: 100%;
+    z-index: 2;
+    clip-path: polygon(0% 100%, 100% 100%, 90% 0%, 10% 0%);
+    transform: rotate(180deg);
+    transition: 0.8s;
+  }
+}
+
+.hero-box:hover {
+  .bg-effect {
+    width: 10%;
+    clip-path: polygon(0% 100%, 100% 100%, 70% 0%, 30% 0%);
+  }
+}
+
+.hero-box::before {
+  content: "";
+  width: 0;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  clip-path: polygon(0% 100%, 100% 100%, 80% 0%, 0% 0%);
+  transition: width 1s ease-in-out;
+}
+
+.hero-box:hover::before {
+  width: 15%;
+}
+
+.hero-box::after {
+  content: "";
+  width: 0;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #353535;
+  clip-path: polygon(0% 100%, 100% 100%, 100% 0%, 20% 0%);
+  transition: width 1s ease-in-out;
+}
+
+.hero-box:hover::after {
+  width: 15%;
+}
+
+.hero-box.dark-ath {
+  background-color: #191919 !important;
+  .hero-home,
+  .hero-page {
+    color: #fff;
+  }
+  .bg-effect {
+    background-color: #353535 !important;
+  }
+}
+
+.hero-box.light-ath {
+  background-color: #f5f5f5 !important;
+  .hero-home,
+  .hero-page {
+    color: #000;
+  }
+  .bg-effect {
+    background-color: #e5e5e5 !important;
+  }
+}
+
+.hero-box.hero-box.dark-ath::before,
+.hero-box.hero-box.dark-ath::after {
+  background-color: #353535;
+}
+
+.hero-box.hero-box.light-ath::before,
+.hero-box.hero-box.light-ath::after {
+  background-color: #e5e5e5;
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 70px 0;
+  }
+}

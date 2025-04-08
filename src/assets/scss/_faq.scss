@@ -5,20 +5,16 @@
 }
 
 .accordion-item {
-  background-color: #191919 !important;
   border: none !important;
   box-shadow: none !important;
 }
 
 .accordion-header {
-  background-color: #191919 !important;
   cursor: pointer;
   border-top: 1px solid #555;
 }
 
 .accordion-header button {
-  color: #fff;
-  background-color: #191919 !important;
   font-weight: 600;
   font-size: 18px;
   padding: 15px;
@@ -28,8 +24,6 @@
 }
 
 .accordion-body {
-  color: #888888;
-  background-color: #191919 !important;
   font-size: 16px;
   padding: 20px;
   border: none !important;
@@ -37,8 +31,6 @@
 }
 
 .accordion-button:not(.collapsed) {
-  background-color: #191919 !important;
-  color: #fff !important;
   border: none !important;
   padding: 15px;
   font-weight: 600;
@@ -52,7 +44,14 @@
 }
 
 .accordion-button:not(.collapsed) {
-  background-color: #191919 !important;
-  color: #fff !important;
   border: none !important;
+}
+
+.page,
+.faq-container,
+.accordion-item,
+.accordion-button,
+.accordion-body {
+  background-color: transparent !important;
+  color: inherit !important;
 }

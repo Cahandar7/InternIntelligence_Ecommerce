@@ -1,124 +1,247 @@
-.account-box {
+.account-box.dark-lrr {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 10px 0 30px 0;
-}
+  .login-register-wrapper {
+    width: 350px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid rgb(255, 255, 255, 0.1);
+    border-radius: 4px;
+    padding: 20px;
+  }
 
-.account-box .login-register-wrapper {
-  width: 350px;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  border: 2px solid rgb(255, 255, 255, 0.1);
-  border-radius: 4px;
-  padding: 20px;
-}
+  .login-register-wrapper h5 {
+    color: #ffffff;
+    font-size: 20px;
+    text-align: center;
+    text-transform: uppercase;
+  }
 
-.account-box .login-register-wrapper h5 {
-  color: #ffffff;
-  font-size: 20px;
-  text-align: center;
-  text-transform: uppercase;
-}
+  .login-register-wrapper .input-box {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px;
+    padding: 8px 12px;
+    background-color: #1f1f1f;
+    color: #ffffff;
+    font-weight: 600;
+    border: 1px solid rgb(255, 255, 255, 0.1);
+    border-radius: 4px;
+    transition: 0.4s;
+  }
 
-.account-box .login-register-wrapper .input-box {
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 20px;
-  padding: 8px 12px;
-  background-color: #1f1f1f;
-  color: #ffffff;
-  font-weight: 600;
-  border: 1px solid rgb(255, 255, 255, 0.1);
-  border-radius: 4px;
-  transition: 0.4s;
-}
+  .login-register-wrapper .input-box:hover {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+  }
 
-.account-box .login-register-wrapper .input-box:hover {
-  border: 1px solid rgba(255, 255, 255, 0.4);
-}
+  .login-register-wrapper .input-box input {
+    width: 80%;
+    color: #fff;
+    opacity: 1;
+    background-color: transparent;
+    border: none;
+    font-size: 14px;
+  }
 
-.account-box .login-register-wrapper .input-box input {
-  width: 80%;
-  color: #fff;
-  opacity: 1;
-  background-color: transparent;
-  border: none;
-  font-size: 14px;
-}
+  .login-register-wrapper .input-box input::placeholder {
+    color: #fff;
+    opacity: 0.4;
+  }
 
-.account-box .login-register-wrapper .input-box input::placeholder {
-  color: #fff;
-  opacity: 0.4;
-}
+  .login-register-wrapper .input-box .icon {
+    color: #fff;
+    cursor: pointer;
+    margin-right: 5px;
+    font-size: 16px;
+  }
 
-.account-box .login-register-wrapper .input-box .icon {
-  color: #fff;
-  cursor: pointer;
-  margin-right: 5px;
-  font-size: 16px;
-}
+  .login-register-wrapper .remember-forgot {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+  }
 
-.account-box .login-register-wrapper .remember-forgot {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-}
+  .login-register-wrapper .remember-forgot .remember {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    color: #fff;
+    input {
+      accent-color: #fff;
+    }
+  }
 
-.account-box .login-register-wrapper .remember-forgot .remember {
-  display: flex;
-  align-items: center;
-  gap: 3px;
-  color: #fff;
-  input {
-    accent-color: #fff;
+  .login-register-wrapper .remember-forgot .forgot {
+    color: #fff;
+    text-decoration: underline !important;
+    cursor: pointer;
+  }
+
+  .login-register-wrapper .btn-box {
+    width: 100%;
+    text-align: center;
+    margin: 15px 0;
+  }
+
+  .login-register-wrapper .btn-box .submit-btn {
+    width: 50%;
+    height: 100%;
+    color: #fff;
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 4px;
+    text-align: center;
+    font-size: 12px;
+    transition: 0.4s;
+    text-transform: uppercase;
+  }
+
+  .login-register-wrapper .btn-box .submit-btn:hover {
+    background-color: #ffffff;
+    color: #000;
+  }
+
+  .login-register-wrapper .go-register,
+  .go-login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    color: #fff;
+    .go {
+      color: #c62828;
+    }
   }
 }
 
-.account-box .login-register-wrapper .remember-forgot .forgot {
-  color: #fff;
-  text-decoration: underline !important;
-  cursor: pointer;
-}
-
-.account-box .login-register-wrapper .btn-box {
+.account-box.light-lrr {
   width: 100%;
-  text-align: center;
-  margin: 15px 0;
-}
-
-.account-box .login-register-wrapper .btn-box .submit-btn {
-  width: 50%;
-  height: 100%;
-  color: #fff;
-  background-color: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 4px;
-  text-align: center;
-  font-size: 12px;
-  transition: 0.4s;
-  text-transform: uppercase;
-}
-
-.account-box .login-register-wrapper .btn-box .submit-btn:hover {
-  background-color: #ffffff;
-  color: #000;
-}
-
-.account-box .login-register-wrapper .go-register,
-.go-login {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
-  color: #fff;
-  .go {
-    color: #c62828;
+  margin: 10px 0 30px 0;
+  .login-register-wrapper {
+    width: 350px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid rgb(0, 0, 0, 0.4);
+    border-radius: 4px;
+    padding: 20px;
+  }
+
+  .login-register-wrapper h5 {
+    color: #000;
+    font-size: 20px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .login-register-wrapper .input-box {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px;
+    padding: 8px 12px;
+    background-color: #e5e5e5;
+    color: #000;
+    font-weight: 600;
+    border: 1px solid rgb(0, 0, 0, 0.4);
+    border-radius: 4px;
+    transition: 0.4s;
+  }
+
+  .login-register-wrapper .input-box:hover {
+    border: 1px solid rgba(0, 0, 0, 0.7);
+  }
+
+  .login-register-wrapper .input-box input {
+    width: 80%;
+    color: #000;
+    opacity: 1;
+    background-color: transparent;
+    border: none;
+    font-size: 14px;
+  }
+
+  .login-register-wrapper .input-box input::placeholder {
+    color: #000;
+    opacity: 0.4;
+  }
+
+  .login-register-wrapper .input-box .icon {
+    color: #000;
+    cursor: pointer;
+    margin-right: 5px;
+    font-size: 16px;
+  }
+
+  .login-register-wrapper .remember-forgot {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .login-register-wrapper .remember-forgot .remember {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    color: #000;
+    input {
+      accent-color: #fff;
+    }
+  }
+
+  .login-register-wrapper .remember-forgot .forgot {
+    color: #000;
+    text-decoration: underline !important;
+    cursor: pointer;
+  }
+
+  .login-register-wrapper .btn-box {
+    width: 100%;
+    text-align: center;
+    margin: 15px 0;
+  }
+
+  .login-register-wrapper .btn-box .submit-btn {
+    width: 50%;
+    height: 100%;
+    color: #000;
+    background-color: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-radius: 4px;
+    text-align: center;
+    font-size: 12px;
+    transition: 0.4s;
+    text-transform: uppercase;
+  }
+
+  .login-register-wrapper .btn-box .submit-btn:hover {
+    background-color: #000;
+    color: #fff;
+  }
+
+  .login-register-wrapper .go-register,
+  .go-login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    color: #000;
+    .go {
+      color: #c62828;
+    }
   }
 }

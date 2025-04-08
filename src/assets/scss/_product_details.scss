@@ -41,7 +41,7 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  color: #fff;
+  color: inherit !important;
   border-right: 1px solid rgba(255, 255, 255, 0.1);
   .product-details-title {
     font-size: 24px;
@@ -112,17 +112,17 @@
     margin-bottom: 40px;
     h1 {
       font-size: 20px;
-      color: #ffffff;
+      color: inherit;
       text-align: center;
     }
     .link {
-      color: #ffffff;
+      color: inherit;
       text-decoration: underline !important;
     }
   }
   .you-also-like {
     font-size: 14px;
-    color: #ffffff;
+    color: inherit;
     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
     padding: 5px 0;
     margin: 15px 0;
@@ -130,7 +130,7 @@
   }
   .its-title {
     font-size: 16px;
-    color: #ffffff;
+    color: inherit;
   }
 }
 

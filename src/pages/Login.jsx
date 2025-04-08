@@ -5,9 +5,11 @@ import supabase from "../supabase/supabaseClient";
 import { faEye, faEyeSlash, faUser } from "@fortawesome/free-solid-svg-icons";
 import { LanguageContext } from "../contexts/LanguageContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 const Login = () => {
   const { language } = useContext(LanguageContext);
+  const { theme } = useContext(ThemeContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -97,12 +99,11 @@ const Login = () => {
           title:
             language === "en" ? "Oops!" : language === "ru" ? "Ой!" : "Hups!",
           text:
-            err.message ||
-            (language === "en"
+            language === "en"
               ? "Something went wrong. Try again."
               : language === "ru"
               ? "Что-то пошло не так. Попробуйте снова."
-              : "Bir şeylər səhv getdi. Yenidən cəhd edin."),
+              : "Bir şeylər səhv getdi. Yenidən cəhd edin.",
           icon: "error",
         });
       }
@@ -184,7 +185,11 @@ const Login = () => {
   };
 
   return (
-    <div className="account-box page">
+    <div
+      className={`account-box page ${
+        theme === "dark" ? "dark-lrr" : "light-lrr"
+      }`}
+    >
       <div className="login-register-wrapper">
         <form onSubmit={handleSubmit}>
           <h5 className="wrapper-title">

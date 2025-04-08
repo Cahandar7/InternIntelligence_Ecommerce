@@ -9,8 +9,6 @@
   justify-content: center;
   gap: 35px;
   padding: 50px 0;
-  background-color: #1f1f1f;
-  color: #fff;
 }
 
 .column1 {
@@ -32,7 +30,6 @@
   width: 18%;
   height: 320px;
   h5 {
-    color: #fff;
     font-size: 14px;
   }
   div {
@@ -48,7 +45,6 @@
       margin-bottom: 12px;
       transition: 0.4s;
       a {
-        color: #fff;
         font-size: 16px;
       }
     }
@@ -65,14 +61,12 @@
   flex-direction: column;
   justify-content: flex-start;
   h5 {
-    color: #fff;
     font-size: 14px;
   }
   div {
     margin-bottom: 10px;
     h3 {
       font-size: 18px;
-      color: #ffffff;
       transition: 0.4s;
     }
     h3:hover {
@@ -96,13 +90,11 @@
   flex-direction: column;
   justify-content: flex-start;
   h5 {
-    color: #fff;
     font-size: 14px;
   }
   div {
     margin-bottom: 8px;
     .tag-link {
-      color: #fff;
       font-size: 14px;
       padding: 3px 16px;
       margin-right: 8px;
@@ -112,6 +104,7 @@
     .tag-link:hover {
       background-color: #c62828;
       border-color: #c62828;
+      color: #fff !important;
     }
   }
 }
@@ -121,7 +114,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #222222;
   padding: 20px 0 10px 0;
   .foot {
     width: 48%;
@@ -130,10 +122,28 @@
     justify-content: center;
   }
   .text {
-    color: #ffffff;
     font-size: 16px;
     span p {
       margin-bottom: 3px;
     }
+  }
+}
+
+@media (max-width: 900px) {
+  .top-footer {
+    flex-wrap: wrap;
+    padding: 50px 0;
+    gap: 20px;
+  }
+  .column1 {
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .column2,
+  .column3,
+  .column4 {
+    display: none;
   }
 }

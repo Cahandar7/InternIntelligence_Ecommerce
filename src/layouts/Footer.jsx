@@ -5,12 +5,21 @@ import { faMessage } from "@fortawesome/free-solid-svg-icons/faMessage";
 import { Link } from "react-router-dom";
 import footer_payments from "../assets/images/footer-payments.png";
 import { LanguageContext } from "../contexts/LanguageContext";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 const Footer = () => {
   const { language } = useContext(LanguageContext);
+  const { theme } = useContext(ThemeContext);
 
   return (
-    <div className="footer">
+    <div
+      className="footer"
+      style={
+        theme === "dark"
+          ? { backgroundColor: "#1f1f1f", color: "#fff" }
+          : { backgroundColor: "#e5e5e5", color: "#000" }
+      }
+    >
       <div className="top-footer">
         <div className="column1">
           <img src="src/assets/images/xstore_logo.png" alt="XStore Logo" />
@@ -40,7 +49,12 @@ const Footer = () => {
           <div>
             <ul>
               <li>
-                <Link to={"/"}>
+                <Link
+                  style={
+                    theme === "dark" ? { color: "#fff" } : { color: "#000" }
+                  }
+                  to={"/"}
+                >
                   {language === "en"
                     ? "Home Page"
                     : language === "ru"
@@ -49,7 +63,12 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to={"/about"}>
+                <Link
+                  style={
+                    theme === "dark" ? { color: "#fff" } : { color: "#000" }
+                  }
+                  to={"/about"}
+                >
                   {language === "en"
                     ? "About Us"
                     : language === "ru"
@@ -58,7 +77,12 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to={"/contact"}>
+                <Link
+                  style={
+                    theme === "dark" ? { color: "#fff" } : { color: "#000" }
+                  }
+                  to={"/contact"}
+                >
                   {language === "en"
                     ? "Contact Us"
                     : language === "ru"
@@ -67,7 +91,12 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to={"/blog"}>
+                <Link
+                  style={
+                    theme === "dark" ? { color: "#fff" } : { color: "#000" }
+                  }
+                  to={"/blog"}
+                >
                   {language === "en"
                     ? "Blog"
                     : language === "ru"
@@ -76,10 +105,22 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to={"/faq"}>FAQs</Link>
+                <Link
+                  style={
+                    theme === "dark" ? { color: "#fff" } : { color: "#000" }
+                  }
+                  to={"/faq"}
+                >
+                  FAQs
+                </Link>
               </li>
               <li>
-                <Link to={"/account"}>
+                <Link
+                  style={
+                    theme === "dark" ? { color: "#fff" } : { color: "#000" }
+                  }
+                  to={"/account"}
+                >
                   {language === "en"
                     ? "My Account"
                     : language === "ru"
@@ -88,7 +129,12 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to={"/"}>
+                <Link
+                  style={
+                    theme === "dark" ? { color: "#fff" } : { color: "#000" }
+                  }
+                  to={"/"}
+                >
                   {language === "en"
                     ? "Conditions"
                     : language === "ru"
@@ -99,7 +145,12 @@ const Footer = () => {
             </ul>
             <ul>
               <li>
-                <Link to={"contact"}>
+                <Link
+                  style={
+                    theme === "dark" ? { color: "#fff" } : { color: "#000" }
+                  }
+                  to={"contact"}
+                >
                   {language === "en"
                     ? "London"
                     : language === "ru"
@@ -108,7 +159,12 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to={"contact"}>
+                <Link
+                  style={
+                    theme === "dark" ? { color: "#fff" } : { color: "#000" }
+                  }
+                  to={"contact"}
+                >
                   {language === "en"
                     ? "San Francisco"
                     : language === "ru"
@@ -117,7 +173,12 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to={"contact"}>
+                <Link
+                  style={
+                    theme === "dark" ? { color: "#fff" } : { color: "#000" }
+                  }
+                  to={"contact"}
+                >
                   {language === "en"
                     ? "New Orleans"
                     : language === "ru"
@@ -126,7 +187,12 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to={"contact"}>
+                <Link
+                  style={
+                    theme === "dark" ? { color: "#fff" } : { color: "#000" }
+                  }
+                  to={"contact"}
+                >
                   {language === "en"
                     ? "Seattle"
                     : language === "ru"
@@ -135,7 +201,12 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to={"contact"}>
+                <Link
+                  style={
+                    theme === "dark" ? { color: "#fff" } : { color: "#000" }
+                  }
+                  to={"contact"}
+                >
                   {language === "en"
                     ? "Portland"
                     : language === "ru"
@@ -144,7 +215,12 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to={"contact"}>
+                <Link
+                  style={
+                    theme === "dark" ? { color: "#fff" } : { color: "#000" }
+                  }
+                  to={"contact"}
+                >
                   {language === "en"
                     ? "Stockholm"
                     : language === "ru"
@@ -153,7 +229,12 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to={"contact"}>
+                <Link
+                  style={
+                    theme === "dark" ? { color: "#fff" } : { color: "#000" }
+                  }
+                  to={"contact"}
+                >
                   {language === "en"
                     ? "Hoffenheim"
                     : language === "ru"
@@ -211,14 +292,22 @@ const Footer = () => {
           </h5>
           <hr />
           <div>
-            <Link to={"/"} className="tag-link">
+            <Link
+              to={"/"}
+              className="tag-link"
+              style={theme === "dark" ? { color: "#fff" } : { color: "#000" }}
+            >
               {language === "en"
                 ? "accessories"
                 : language === "ru"
                 ? "аксессуары"
                 : "aksesuarlar"}
             </Link>
-            <Link to={"/"} className="tag-link">
+            <Link
+              to={"/"}
+              className="tag-link"
+              style={theme === "dark" ? { color: "#fff" } : { color: "#000" }}
+            >
               {language === "en"
                 ? "black"
                 : language === "ru"
@@ -227,17 +316,29 @@ const Footer = () => {
             </Link>
           </div>
           <div>
-            <Link to={"/"} className="tag-link">
+            <Link
+              to={"/"}
+              className="tag-link"
+              style={theme === "dark" ? { color: "#fff" } : { color: "#000" }}
+            >
               {language === "en" ? "look" : language === "ru" ? "вид" : "baxış"}
             </Link>
-            <Link to={"/"} className="tag-link">
+            <Link
+              to={"/"}
+              className="tag-link"
+              style={theme === "dark" ? { color: "#fff" } : { color: "#000" }}
+            >
               {language === "en"
                 ? "look2"
                 : language === "ru"
                 ? "вид2"
                 : "baxış2"}
             </Link>
-            <Link to={"/"} className="tag-link">
+            <Link
+              to={"/"}
+              className="tag-link"
+              style={theme === "dark" ? { color: "#fff" } : { color: "#000" }}
+            >
               {language === "en"
                 ? "look3"
                 : language === "ru"
@@ -246,17 +347,29 @@ const Footer = () => {
             </Link>
           </div>
           <div>
-            <Link to={"/"} className="tag-link">
+            <Link
+              to={"/"}
+              className="tag-link"
+              style={theme === "dark" ? { color: "#fff" } : { color: "#000" }}
+            >
               {language === "en" ? "new" : language === "ru" ? "новый" : "yeni"}
             </Link>
-            <Link to={"/"} className="tag-link">
+            <Link
+              to={"/"}
+              className="tag-link"
+              style={theme === "dark" ? { color: "#fff" } : { color: "#000" }}
+            >
               {language === "en"
                 ? "sale"
                 : language === "ru"
                 ? "распродажа"
                 : "endirim"}
             </Link>
-            <Link to={"/"} className="tag-link">
+            <Link
+              to={"/"}
+              className="tag-link"
+              style={theme === "dark" ? { color: "#fff" } : { color: "#000" }}
+            >
               {language === "en"
                 ? "week"
                 : language === "ru"
@@ -265,14 +378,22 @@ const Footer = () => {
             </Link>
           </div>
           <div>
-            <Link to={"/"} className="tag-link">
+            <Link
+              to={"/"}
+              className="tag-link"
+              style={theme === "dark" ? { color: "#fff" } : { color: "#000" }}
+            >
               {language === "en"
                 ? "fashion"
                 : language === "ru"
                 ? "мода"
                 : "moda"}
             </Link>
-            <Link to={"/"} className="tag-link">
+            <Link
+              to={"/"}
+              className="tag-link"
+              style={theme === "dark" ? { color: "#fff" } : { color: "#000" }}
+            >
               {language === "en"
                 ? "illegal"
                 : language === "ru"
@@ -282,7 +403,14 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="sub-footer">
+      <div
+        className="sub-footer"
+        style={
+          theme === "dark"
+            ? { backgroundColor: "#222222", color: "#fff" }
+            : { backgroundColor: "#f5f5f5", color: "#000" }
+        }
+      >
         <div className="foot text">
           <span>
             <p>

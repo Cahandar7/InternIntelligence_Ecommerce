@@ -14,11 +14,13 @@ import AnimatedTopHero from "../components/AnimatedTopHero";
 import { useSelector } from "react-redux";
 import { LanguageContext } from "../contexts/LanguageContext";
 import { CurrencyContext } from "../contexts/CurrencyContext";
+import { ThemeContext } from "../contexts/ThemeContext";
 import product_not_found from "../assets/images/product_not_found.gif";
 
 const ShopPage = () => {
   const products = useSelector((p) => p);
   const { language } = useContext(LanguageContext);
+  const { theme } = useContext(ThemeContext);
   const { convertCurrency } = useContext(CurrencyContext);
   const [activeItem, setActiveItem] = useState(
     language === "en"
@@ -128,7 +130,11 @@ const ShopPage = () => {
           language === "en" ? "Shop" : language === "ru" ? "Магазин" : "Mağaza"
         }
       />
-      <Container className="products-con">
+      <Container
+        className={`products-con ${
+          theme === "dark" ? "dark-shop" : "light-shop"
+        }`}
+      >
         <Row>
           <Col sm={12} md={3} lg={3}>
             <Accordion className="acc1">
@@ -324,8 +330,8 @@ const ShopPage = () => {
                       onClick={() =>
                         star === index + 1 ? setStar(0) : setStar(index + 1)
                       }
-                      className={index < star ? "yellow-star" : ""}
                       style={{
+                        color: "yellow",
                         cursor: "pointer",
                         marginRight: "7px",
                         transition: ".2s",
@@ -336,7 +342,11 @@ const ShopPage = () => {
               </Accordion.Item>
             </Accordion>
 
-            <div className="clear-filters-btn">
+            <div
+              className={`clear-filters-btn ${
+                theme === "dark" ? "dark-b" : "light-b"
+              }`}
+            >
               <button
                 onClick={() => {
                   clearFilters();
@@ -349,7 +359,11 @@ const ShopPage = () => {
                   : "Filtrləri Təmizlə"}
               </button>
             </div>
-            <div className="shop-box">
+            <div
+              className={`shop-box ${
+                theme === "dark" ? "dark-shop-box" : "light-shop-box"
+              }`}
+            >
               <FontAwesomeIcon
                 icon={faGlobe}
                 size="2x"
@@ -371,7 +385,11 @@ const ShopPage = () => {
               </p>
             </div>
 
-            <div className="shop-box">
+            <div
+              className={`shop-box ${
+                theme === "dark" ? "dark-shop-box" : "light-shop-box"
+              }`}
+            >
               <FontAwesomeIcon
                 icon={faTruck}
                 size="2x"
@@ -536,12 +554,21 @@ const ShopPage = () => {
                 >
                   <img src={product_not_found} width="300" height="300" />
                   <h1
-                    style={{
-                      color: "#ffffff",
-                      fontSize: "30px",
-                      textAlign: "center",
-                      textTransform: "uppercase",
-                    }}
+                    style={
+                      theme === "dark"
+                        ? {
+                            color: "#ffffff",
+                            fontSize: "30px",
+                            textAlign: "center",
+                            textTransform: "uppercase",
+                          }
+                        : {
+                            color: "#000",
+                            fontSize: "30px",
+                            textAlign: "center",
+                            textTransform: "uppercase",
+                          }
+                    }
                   >
                     {language === "en"
                       ? "Products Not Found"

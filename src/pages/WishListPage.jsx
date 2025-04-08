@@ -8,9 +8,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useCart } from "react-use-cart";
 import { LanguageContext } from "../contexts/LanguageContext";
 import { CurrencyContext } from "../contexts/CurrencyContext";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 const WishListPage = () => {
   const { language } = useContext(LanguageContext);
+  const { theme } = useContext(ThemeContext);
+
   const { removeFromWishlist, wishlistItems, wishlistIsEmpty, clearWishlist } =
     useWishlist();
 
@@ -74,7 +77,9 @@ const WishListPage = () => {
           </Link>
         </div>
       ) : (
-        <div className="wishlist">
+        <div
+          className={`wishlist ${theme === "dark" ? "dark-wl" : "light-wl"}`}
+        >
           <table className="table">
             <thead>
               <tr>

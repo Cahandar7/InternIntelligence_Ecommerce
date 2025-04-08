@@ -16,7 +16,6 @@
   top: 0;
   left: 0;
   padding: 10px 40px;
-  background-color: #191919;
   .dropdown {
     button {
       border: none;
@@ -42,9 +41,7 @@
   }
   .admin-add-prod-btn {
     height: 40px;
-    color: #ffffff;
     background-color: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.2);
     font-size: 15px;
     text-transform: uppercase;
     padding: 13px 30px;
@@ -76,5 +73,20 @@
       background-color: transparent !important;
       text-align: center !important;
     }
+  }
+}
+
+.admin-panel .admin-panel-header.dark-admin {
+  background-color: #191919;
+  .admin-add-prod-btn {
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+}
+.admin-panel .admin-panel-header.light-admin {
+  background-color: #e5e5e5;
+  .admin-add-prod-btn {
+    color: #000;
+    border: 1px solid rgba(0, 0, 0, 0.2);
   }
 }

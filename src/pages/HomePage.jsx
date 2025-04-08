@@ -10,13 +10,15 @@ import { useSelector } from "react-redux";
 import ProductCard from "../components/ProductCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { LanguageContext } from "../contexts/LanguageContext";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 const HomePage = () => {
   const products = useSelector((p) => p);
   const { language } = useContext(LanguageContext);
+  const { theme } = useContext(ThemeContext);
 
   return (
-    <div className="page">
+    <div className={`page ${theme}`}>
       <HomeBanner />
 
       <div className="shine-cards">
@@ -139,7 +141,7 @@ const HomePage = () => {
         speed={100}
         gradient={false}
         pauseOnHover={false}
-        className="strip-container"
+        className={`strip-container ${theme}`}
       >
         {language === "en"
           ? "Welcome to Xstore - Your One-Stop Shop! Free Shipping Over $50! Exclusive Deals Available Now! Trusted by Thousands! New Arrivals Every Week!"
@@ -151,7 +153,7 @@ const HomePage = () => {
       <div className="texts-section">
         <div className="first">
           <h2>.01</h2>
-          <h3>
+          <h3 className={`${theme}`}>
             {language === "en"
               ? "MAKE YOUR ORDER"
               : language === "ru"
@@ -175,7 +177,7 @@ const HomePage = () => {
         </div>
         <div className="second">
           <h2>.02</h2>
-          <h3>
+          <h3 className={`${theme}`}>
             {language === "en"
               ? "PAYMENT PROCESS"
               : language === "ru"
@@ -199,7 +201,7 @@ const HomePage = () => {
         </div>
         <div className="third">
           <h2>.03</h2>
-          <h3>
+          <h3 className={`${theme}`}>
             {language === "en"
               ? "24H UK DELIVERY"
               : language === "ru"
@@ -223,7 +225,7 @@ const HomePage = () => {
         </div>
       </div>
 
-      <div className="blog-slider-container">
+      <div className={`blog-slider-container ${theme}`}>
         <div className="texts">
           <h1>
             {language === "en"

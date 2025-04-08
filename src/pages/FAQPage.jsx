@@ -2,9 +2,11 @@ import React, { useContext } from "react";
 import Accordion from "react-bootstrap/Accordion";
 import AnimatedTopHero from "../components/AnimatedTopHero";
 import { LanguageContext } from "../contexts/LanguageContext";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 const FAQPage = () => {
   const { language } = useContext(LanguageContext);
+  const { theme } = useContext(ThemeContext);
 
   return (
     <div className="page">

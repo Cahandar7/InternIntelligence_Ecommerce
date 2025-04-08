@@ -3,9 +3,11 @@ import CartTopBanner from "../components/CartTopBanner";
 import { Link, useLocation } from "react-router-dom";
 import { LanguageContext } from "../contexts/LanguageContext";
 import { CurrencyContext } from "../contexts/CurrencyContext";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 const OrderStatusPage = () => {
   const { language } = useContext(LanguageContext);
+  const { theme } = useContext(ThemeContext);
   const location_order = useLocation();
   const billingInfo = location_order.state?.billingInfo;
   const totalSum = location_order.state?.totalSum;
@@ -37,7 +39,11 @@ const OrderStatusPage = () => {
           marginBottom: "30px",
         }}
       >
-        <div className="order-status">
+        <div
+          className={`order-status ${
+            theme === "dark" ? "dark-os" : "light-os"
+          }`}
+        >
           <div className="status">
             <h2>
               {language === "en"

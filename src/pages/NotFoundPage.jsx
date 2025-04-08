@@ -1,12 +1,18 @@
 import React, { useContext } from "react";
 import { LanguageContext } from "../contexts/LanguageContext";
+import { ThemeContext } from "../contexts/ThemeContext";
 import { Link } from "react-router-dom";
 
 const NotFoundPage = () => {
   const { language } = useContext(LanguageContext);
+  const { theme } = useContext(ThemeContext);
 
   return (
-    <div className="not-found-container page">
+    <div
+      className={`not-found-container page ${
+        theme === "dark" ? "dark-nfp" : "light-nfp"
+      }`}
+    >
       <h1 className="not-found-title">
         {language === "en"
           ? "Page Not Found"

@@ -10,9 +10,11 @@ import CartTopBanner from "../components/CartTopBanner";
 import supabase from "../supabase/supabaseClient";
 import { LanguageContext } from "../contexts/LanguageContext";
 import { CurrencyContext } from "../contexts/CurrencyContext";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 const CartPage = () => {
   const { language } = useContext(LanguageContext);
+  const { theme } = useContext(ThemeContext);
   const [inputPromo, setInputPromo] = useState("");
   const [promocodes, setPromocodes] = useState(["UNEC777", "TRY6C"]);
   const [discountApplied, setDiscountApplied] = useState(false);
@@ -34,8 +36,18 @@ const CartPage = () => {
 
     if (promocodes.includes(inputPromo)) {
       Swal.fire({
-        title: "Promo Code Applied!",
-        text: "Your discount has been successfully applied.",
+        title:
+          language === "en"
+            ? "Promo Code Applied!"
+            : language === "ru"
+            ? "Промокод применён!"
+            : "Promo kodu tətbiq olundu!",
+        text:
+          language === "en"
+            ? "Your discount has been successfully applied."
+            : language === "ru"
+            ? "Ваша скидка была успешно применена."
+            : "Endiriminiz uğurla tətbiq olundu.",
         icon: "success",
       });
 
@@ -43,8 +55,18 @@ const CartPage = () => {
       setDiscountAmount(cartTotal * 0.1);
     } else {
       Swal.fire({
-        title: "Invalid Promo Code",
-        text: "The promo code you entered is incorrect or expired. Please try again.",
+        title:
+          language === "en"
+            ? "Invalid Promo Code"
+            : language === "ru"
+            ? "Недействительный промокод"
+            : "Yanlış promo kodu",
+        text:
+          language === "en"
+            ? "The promo code you entered is incorrect or expired. Please try again."
+            : language === "ru"
+            ? "Введённый промокод неверен или просрочен. Пожалуйста, попробуйте снова."
+            : "Daxil etdiyiniz promo kod yanlışdır və ya müddəti bitib. Zəhmət olmasa, yenidən cəhd edin.",
         icon: "error",
       });
     }
@@ -71,7 +93,7 @@ const CartPage = () => {
   return (
     <div className="page">
       <CartTopBanner />
-      <Container>
+      <Container className={theme}>
         {isEmpty ? (
           <div className="empty-cart-wishlist-div">
             <svg
@@ -221,7 +243,11 @@ const CartPage = () => {
                   ))}
                 </tbody>
               </table>
-              <div className="promocode-clear-box">
+              <div
+                className={`promocode-clear-box ${
+                  theme === "dark" ? "dark-pcb" : "light-pcb"
+                }`}
+              >
                 <form onSubmit={applyPromoCode}>
                   <div className="promocode">
                     <input
@@ -268,7 +294,14 @@ const CartPage = () => {
                 </button>
               </div>
             </Col>
-            <Col sm={12} md={5} lg={4} className="cart-totals">
+            <Col
+              sm={12}
+              md={5}
+              lg={4}
+              className={`cart-totals ${
+                theme === "dark" ? "dark-ct" : "light-ct"
+              }`}
+            >
               <h2>
                 {language === "en"
                   ? "Cart totals"

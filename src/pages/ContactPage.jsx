@@ -1,9 +1,11 @@
 import React, { useState, useContext } from "react";
 import AnimatedTopHero from "../components/AnimatedTopHero";
 import { LanguageContext } from "../contexts/LanguageContext";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 const ContactPage = () => {
   const { language } = useContext(LanguageContext);
+  const { theme } = useContext(ThemeContext);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -40,7 +42,7 @@ const ContactPage = () => {
             : "Əlaqə"
         }
       />
-      <div className="map-container">
+      <div className={`map-container ${theme}`}>
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d249179.66072117156!2d-74.259867!3d40.6976701!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24a1a1a1a1a1b%3A0x1b0d7c87a9b1a8b9!2sNew+York+City!5e0!3m2!1sen!2sus!4v1647983493285!5m2!1sen!2sus"
           width="100%"
@@ -51,7 +53,7 @@ const ContactPage = () => {
           title="Google Map"
         />
       </div>
-      <div className="contact-container">
+      <div className={`contact-container ${theme}`}>
         <form onSubmit={handleSubmit} className="form-container">
           <div className="form-row">
             <div className="form-group">
@@ -63,6 +65,7 @@ const ContactPage = () => {
                   : "Ad *"}
               </label>
               <input
+                style={theme === "dark" ? { color: "#fff" } : { color: "#000" }}
                 type="text"
                 id="name"
                 name="name"
@@ -81,6 +84,7 @@ const ContactPage = () => {
                   : "Soyad *"}
               </label>
               <input
+                style={theme === "dark" ? { color: "#fff" } : { color: "#000" }}
                 type="text"
                 id="surname"
                 name="surname"
@@ -101,6 +105,7 @@ const ContactPage = () => {
                   : "E-poçt ünvanı *"}
               </label>
               <input
+                style={theme === "dark" ? { color: "#fff" } : { color: "#000" }}
                 type="email"
                 id="email"
                 name="email"
@@ -119,6 +124,7 @@ const ContactPage = () => {
                   : "Telefon nömrəsi *"}
               </label>
               <input
+                style={theme === "dark" ? { color: "#fff" } : { color: "#000" }}
                 type="tel"
                 id="phone"
                 name="phone"
@@ -137,6 +143,7 @@ const ContactPage = () => {
                 : "Mesajınız"}
             </label>
             <textarea
+              style={theme === "dark" ? { color: "#fff" } : { color: "#000" }}
               id="message"
               name="message"
               value={formData.message}

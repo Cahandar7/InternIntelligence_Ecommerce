@@ -5,9 +5,11 @@ import { Link, useNavigate } from "react-router-dom";
 import supabase from "../supabase/supabaseClient";
 import Swal from "sweetalert2";
 import { LanguageContext } from "../contexts/LanguageContext";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 const Register = () => {
   const { language } = useContext(LanguageContext);
+  const { theme } = useContext(ThemeContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -95,7 +97,11 @@ const Register = () => {
   };
 
   return (
-    <div className="account-box page">
+    <div
+      className={`account-box page ${
+        theme === "dark" ? "dark-lrr" : "light-lrr"
+      }`}
+    >
       <div className="login-register-wrapper">
         <form onSubmit={handleSubmit}>
           <h5 className="wrapper-title">

@@ -3,9 +3,11 @@ import about_us_img1 from "../assets/images/about_us_img1.png";
 import about_us_img2 from "../assets/images/about_us_img2.png";
 import { NavLink } from "react-router-dom";
 import { LanguageContext } from "../contexts/LanguageContext";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 const AboutUsPage = () => {
   const { language } = useContext(LanguageContext);
+  const { theme } = useContext(ThemeContext);
 
   return (
     <div className="page">
@@ -31,7 +33,7 @@ const AboutUsPage = () => {
           </h3>
         </div>
       </div>
-      <div className="about-us-banner">
+      <div className={`about-us-banner ${theme}`}>
         <img src={about_us_img2} alt="about_us_img2" />
         <div className="banner-texts">
           <div className="texts">

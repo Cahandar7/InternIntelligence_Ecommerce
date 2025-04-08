@@ -1,7 +1,7 @@
 .map-container {
   width: 100vw;
   text-align: center;
-  margin-top: 20px;
+  padding-top: 20px;
   iframe {
     width: 80%;
     height: 500px;
@@ -13,13 +13,12 @@
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  margin: 50px 0 100px 0;
+  padding: 50px 0 100px 0;
   .contact-texts {
     width: 28%;
     padding: 25px;
     h2 {
       width: 80%;
-      color: #fff;
       font-size: 32px;
       text-align: left;
     }
@@ -30,9 +29,6 @@
       span {
         display: block;
       }
-    }
-    hr {
-      color: #fff;
     }
   }
 }
@@ -57,7 +53,6 @@
 }
 
 .form-group label {
-  color: #ffffff;
   font-size: 16px;
   margin-bottom: 5px;
 }
@@ -65,8 +60,7 @@
 .form-group input,
 .form-group textarea {
   width: 100%;
-  background-color: #1f1f1f;
-  color: #ffffff;
+  background-color: transparent;
   font-size: 16px;
   font-weight: 600;
   padding: 5px 10px;
@@ -79,7 +73,7 @@
 
 .form-group input:focus,
 .form-group textarea:focus {
-  border: 1px solid #ffffff;
+  border: 1px solid #888888;
 }
 
 .submit-btn {

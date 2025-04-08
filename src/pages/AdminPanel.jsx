@@ -13,11 +13,13 @@ import { CurrencyContext } from "../contexts/CurrencyContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 const AdminPanel = () => {
   const products = useSelector((p) => p);
   const dispatch = useDispatch();
   const { language, setLanguage } = useContext(LanguageContext);
+  const { theme, setTheme } = useContext(ThemeContext);
   const { currency, setCurrency, convertCurrency } =
     useContext(CurrencyContext);
   const navigate = useNavigate();
@@ -105,7 +107,11 @@ const AdminPanel = () => {
 
   return (
     <div className="admin-panel">
-      <header className="admin-panel-header">
+      <header
+        className={`admin-panel-header ${
+          theme === "dark" ? "dark-admin" : "light-admin"
+        }`}
+      >
         <div style={{ display: "flex", alignItems: "center" }}>
           <div className="dropdown">
             <button
@@ -113,13 +119,17 @@ const AdminPanel = () => {
               type="button"
               data-bs-toggle="dropdown"
               aria-expanded="false"
+              style={theme === "dark" ? { color: "#fff" } : { color: "#000" }}
             >
               {languageNames[language] || ""}
             </button>
-            <ul className="dropdown-menu">
+            <ul className={`dropdown-menu ${theme}`}>
               <li>
                 <button
                   className="dropdown-item"
+                  style={
+                    theme === "dark" ? { color: "#fff" } : { color: "#000" }
+                  }
                   onClick={() => {
                     setLanguage("en");
                   }}
@@ -133,6 +143,9 @@ const AdminPanel = () => {
               </li>
               <li>
                 <button
+                  style={
+                    theme === "dark" ? { color: "#fff" } : { color: "#000" }
+                  }
                   className="dropdown-item"
                   onClick={() => {
                     setLanguage("ru");
@@ -148,6 +161,9 @@ const AdminPanel = () => {
               <li>
                 <button
                   className="dropdown-item"
+                  style={
+                    theme === "dark" ? { color: "#fff" } : { color: "#000" }
+                  }
                   onClick={() => {
                     setLanguage("az");
                   }}
@@ -161,20 +177,33 @@ const AdminPanel = () => {
               </li>
             </ul>
           </div>
-          <span className="split-stick"></span>
+
+          <span
+            className="split-stick"
+            style={
+              theme === "dark"
+                ? { backgroundColor: "#fff" }
+                : { backgroundColor: "#000" }
+            }
+          ></span>
+
           <div className="dropdown">
             <button
               className="dropdown-toggle"
               type="button"
               data-bs-toggle="dropdown"
               aria-expanded="false"
+              style={theme === "dark" ? { color: "#fff" } : { color: "#000" }}
             >
               {currency}
             </button>
-            <ul className="dropdown-menu">
+            <ul className={`dropdown-menu ${theme}`}>
               <li>
                 <button
                   className="dropdown-item"
+                  style={
+                    theme === "dark" ? { color: "#fff" } : { color: "#000" }
+                  }
                   onClick={() => setCurrency("USD")}
                 >
                   USD
@@ -183,6 +212,9 @@ const AdminPanel = () => {
               <li>
                 <button
                   className="dropdown-item"
+                  style={
+                    theme === "dark" ? { color: "#fff" } : { color: "#000" }
+                  }
                   onClick={() => setCurrency("RUB")}
                 >
                   RUB
@@ -191,9 +223,57 @@ const AdminPanel = () => {
               <li>
                 <button
                   className="dropdown-item"
+                  style={
+                    theme === "dark" ? { color: "#fff" } : { color: "#000" }
+                  }
                   onClick={() => setCurrency("AZN")}
                 >
                   AZN
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          <span
+            className="split-stick"
+            style={
+              theme === "dark"
+                ? { backgroundColor: "#fff" }
+                : { backgroundColor: "#000" }
+            }
+          ></span>
+
+          <div className="dropdown">
+            <button
+              className="dropdown-toggle"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              style={theme === "dark" ? { color: "#fff" } : { color: "#000" }}
+            >
+              {theme}
+            </button>
+            <ul className={`dropdown-menu ${theme}`}>
+              <li>
+                <button
+                  className="dropdown-item"
+                  style={
+                    theme === "dark" ? { color: "#fff" } : { color: "#000" }
+                  }
+                  onClick={() => setTheme("dark")}
+                >
+                  dark
+                </button>
+              </li>
+              <li>
+                <button
+                  className="dropdown-item"
+                  style={
+                    theme === "dark" ? { color: "#fff" } : { color: "#000" }
+                  }
+                  onClick={() => setTheme("light")}
+                >
+                  light
                 </button>
               </li>
             </ul>
@@ -228,7 +308,13 @@ const AdminPanel = () => {
       </header>
 
       <div className="admin-table-container">
-        <Table responsive bordered hover variant="dark" className="admin-table">
+        <Table
+          responsive
+          bordered
+          hover
+          variant={theme}
+          className="admin-table"
+        >
           <thead>
             <tr>
               <th className="id-column">#</th>

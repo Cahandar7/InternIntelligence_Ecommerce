@@ -10,6 +10,7 @@ import { CartProvider } from "react-use-cart";
 import { WishlistProvider } from "./contexts/WishlistContext.jsx";
 import LanguageProvider from "./contexts/LanguageContext.jsx";
 import CurrencyProvider from "./contexts/CurrencyContext.jsx";
+import ThemeProvider from "./contexts/ThemeContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -18,7 +19,9 @@ createRoot(document.getElementById("root")).render(
         <WishlistProvider>
           <LanguageProvider>
             <CurrencyProvider>
-              <App />
+              <ThemeProvider>
+                <App />
+              </ThemeProvider>
             </CurrencyProvider>
           </LanguageProvider>
         </WishlistProvider>

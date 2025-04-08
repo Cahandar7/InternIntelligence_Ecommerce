@@ -6,9 +6,11 @@ import { useCart } from "react-use-cart";
 import { useLocation, useNavigate } from "react-router-dom";
 import { LanguageContext } from "../contexts/LanguageContext";
 import { CurrencyContext } from "../contexts/CurrencyContext";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 const CheckOutPage = () => {
   const { language } = useContext(LanguageContext);
+  const { theme } = useContext(ThemeContext);
   const [countries, setCountries] = useState([]);
   const [inputCountry, setInputCountry] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("Direct Bank Transfer");
@@ -62,7 +64,14 @@ const CheckOutPage = () => {
       <CartTopBanner />
       <Container>
         <Row className="g-5 mb-4">
-          <Col sm={12} md={7} lg={7} className="checkout-form">
+          <Col
+            sm={12}
+            md={7}
+            lg={7}
+            className={`checkout-form ${
+              theme === "dark" ? "dark-cf" : "light-cf"
+            }`}
+          >
             <h1>
               {language === "en"
                 ? "Billing Details"
@@ -221,7 +230,14 @@ const CheckOutPage = () => {
             </form>
           </Col>
 
-          <Col sm={12} md={5} lg={5} className="checkout-bill">
+          <Col
+            sm={12}
+            md={5}
+            lg={5}
+            className={`checkout-bill ${
+              theme === "dark" ? "dark-cb" : "light-cb"
+            }`}
+          >
             <h2>
               {language === "en"
                 ? "Your order"

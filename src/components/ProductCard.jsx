@@ -8,6 +8,7 @@ import { useWishlist } from "../contexts/WishlistContext";
 import slugify from "slugify";
 import { LanguageContext } from "../contexts/LanguageContext";
 import { CurrencyContext } from "../contexts/CurrencyContext";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 const ProductCard = ({
   show,
@@ -23,6 +24,7 @@ const ProductCard = ({
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
   const [isHovered, setIsHovered] = useState(false);
   const { language } = useContext(LanguageContext);
+  const { theme } = useContext(ThemeContext);
   const { convertCurrency } = useContext(CurrencyContext);
 
   return (
@@ -62,19 +64,39 @@ const ProductCard = ({
         className="prod-card-img"
       />
       <Card.Body className="prod-card-texts">
-        <Card.Text className="prod-card-supertitle">
+        <Card.Text
+          className="prod-card-supertitle"
+          style={theme === "dark" ? { color: "#888888" } : { color: "#222222" }}
+        >
           <span>{category}</span>
           <span>{show === "square1" ? brand : ""}</span>
         </Card.Text>
         <Card.Title className="prod-card-title">{title}</Card.Title>
         {show === "square2" && (
-          <Card.Text className="prod-card-supertitle">{brand}</Card.Text>
+          <Card.Text
+            className="prod-card-supertitle"
+            style={
+              theme === "dark" ? { color: "#888888" } : { color: "#222222" }
+            }
+          >
+            {brand}
+          </Card.Text>
         )}
         {show === "square2" && (
-          <Card.Text className="prod-card-supertitle">{description}</Card.Text>
+          <Card.Text
+            className="prod-card-supertitle"
+            style={
+              theme === "dark" ? { color: "#888888" } : { color: "#222222" }
+            }
+          >
+            {description}
+          </Card.Text>
         )}
 
-        <Card.Text className="prod-card-subtitle ">
+        <Card.Text
+          className="prod-card-subtitle"
+          style={theme === "dark" ? { color: "#888888" } : { color: "#222222" }}
+        >
           {isHovered ? (
             <span
               className="add-to-cart-text"
