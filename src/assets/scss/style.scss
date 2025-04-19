@@ -52,3 +52,25 @@ body.light {
     fill: #000;
   }
 }
+
+.theme-toggle-button {
+  background: transparent;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  color: inherit;
+}
+
+.theme-toggle-button.rotating {
+  animation: rotate 0.5s ease-in-out;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

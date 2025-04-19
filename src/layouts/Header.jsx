@@ -15,6 +15,8 @@ import {
   faUser,
   faUserCog,
   faBars,
+  faMoon,
+  faSun,
 } from "@fortawesome/free-solid-svg-icons";
 import xstore_logo from "../assets/images/xstore_logo.png";
 import { useWishlist } from "../contexts/WishlistContext";
@@ -38,9 +40,20 @@ const Header = () => {
   const { theme, setTheme } = useContext(ThemeContext);
 
   const [show, setShow] = useState(false);
+  const [rotating, setRotating] = useState(false);
 
   const handleClose = () => setShow(false);
   const toggleShow = () => setShow((s) => !s);
+
+  const toggleTheme = () => {
+    setRotating(true);
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+
+    // stop rotation animation after 500ms
+    setTimeout(() => {
+      setRotating(false);
+    }, 500);
+  };
 
   const languageNames = {
     en: "English",
@@ -646,41 +659,13 @@ const Header = () => {
               }
             ></span>
 
-            <div className="dropdown">
-              <button
-                className="dropdown-toggle"
-                type="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-                style={theme === "dark" ? { color: "#fff" } : { color: "#000" }}
-              >
-                {theme}
-              </button>
-              <ul className={`dropdown-menu ${theme}`}>
-                <li>
-                  <button
-                    className="dropdown-item"
-                    style={
-                      theme === "dark" ? { color: "#fff" } : { color: "#000" }
-                    }
-                    onClick={() => setTheme("dark")}
-                  >
-                    dark
-                  </button>
-                </li>
-                <li>
-                  <button
-                    className="dropdown-item"
-                    style={
-                      theme === "dark" ? { color: "#fff" } : { color: "#000" }
-                    }
-                    onClick={() => setTheme("light")}
-                  >
-                    light
-                  </button>
-                </li>
-              </ul>
-            </div>
+            <button
+              onClick={toggleTheme}
+              className={`theme-toggle-button ${rotating ? "rotating" : ""}`}
+              aria-label="Toggle theme"
+            >
+              <FontAwesomeIcon icon={theme === "dark" ? faSun : faMoon} />
+            </button>
           </div>
           <div className="top-h-center">
             <div
