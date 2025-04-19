@@ -59,17 +59,14 @@
   #carouselExampleAutoplay {
     width: 100%;
     text-align: center;
-    .carousel-control-prev-icon,
-    .carousel-control-next-icon {
+    .carousel-control-icon {
       display: none;
     }
   }
   #carouselExampleAutoplay:hover {
-    .carousel-control-prev-icon,
-    .carousel-control-next-icon {
+    .carousel-control-icon {
       display: block;
-      width: 24px;
-      height: 70px;
+      font-size: 25px;
     }
   }
   .carousel-links {

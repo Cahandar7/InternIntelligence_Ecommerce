@@ -18,7 +18,7 @@ const CheckOutPage = () => {
   const totalSum = loaction_ckeckout.state?.totalSum;
   const { convertCurrency } = useContext(CurrencyContext);
 
-  const { cartTotal, items } = useCart();
+  const { cartTotal, items, emptyCart } = useCart();
   const formRef = useRef();
   const navigate = useNavigate();
 
@@ -50,6 +50,8 @@ const CheckOutPage = () => {
 
     if (form.checkValidity()) {
       form.dispatchEvent(new Event("submit", { bubbles: true }));
+      emptyCart();
+      window.location.reload();
     } else {
       form.reportValidity();
     }

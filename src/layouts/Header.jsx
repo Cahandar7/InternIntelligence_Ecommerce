@@ -1,7 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import Button from "react-bootstrap/Button";
-import Offcanvas from "react-bootstrap/Offcanvas";
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import slugify from "slugify";
 import supabase from "../supabase/supabaseClient";
@@ -17,8 +15,11 @@ import {
   faBars,
   faMoon,
   faSun,
+  faChevronRight,
+  faChevronLeft,
 } from "@fortawesome/free-solid-svg-icons";
 import xstore_logo from "../assets/images/xstore_logo.png";
+import xstore_logo_dark from "../assets/images/xstore_logo_dark.png";
 import { useWishlist } from "../contexts/WishlistContext";
 import Swal from "sweetalert2";
 import { LanguageContext } from "../contexts/LanguageContext";
@@ -740,10 +741,10 @@ const Header = () => {
                 data-bs-target="#carouselExampleAutoplay"
                 data-bs-slide="prev"
               >
-                <span
-                  className="carousel-control-prev-icon"
-                  aria-hidden="true"
-                ></span>
+                <FontAwesomeIcon
+                  className="carousel-control-icon"
+                  icon={faChevronLeft}
+                />
                 <span className="visually-hidden">Previous</span>
               </button>
               <button
@@ -752,10 +753,10 @@ const Header = () => {
                 data-bs-target="#carouselExampleAutoplay"
                 data-bs-slide="next"
               >
-                <span
-                  className="carousel-control-next-icon"
-                  aria-hidden="true"
-                ></span>
+                <FontAwesomeIcon
+                  className="carousel-control-icon"
+                  icon={faChevronRight}
+                />
                 <span className="visually-hidden">Next</span>
               </button>
             </div>
@@ -906,7 +907,10 @@ const Header = () => {
             </form>
           </div>
           <div className="middle-h-center">
-            <img src={xstore_logo} alt="XStore Logo" />
+            <img
+              src={theme === "dark" ? xstore_logo : xstore_logo_dark}
+              alt="XStore Logo"
+            />
           </div>
           <div className="middle-h-right">
             <div>

@@ -34,6 +34,9 @@ body.dark {
   .swiper-button-next {
     color: #fff;
   }
+  .top-h .top-h-center #carouselExampleAutoplay .carousel-control-icon {
+    color: #fff !important;
+  }
 }
 
 body.light {
@@ -42,6 +45,9 @@ body.light {
   .swiper-button-prev,
   .swiper-button-next {
     color: #000;
+  }
+  .top-h .top-h-center #carouselExampleAutoplay .carousel-control-icon {
+    color: #000 !important;
   }
 }
 
