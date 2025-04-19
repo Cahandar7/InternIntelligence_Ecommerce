@@ -49,7 +49,6 @@ const Header = () => {
     setRotating(true);
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
 
-    // stop rotation animation after 500ms
     setTimeout(() => {
       setRotating(false);
     }, 500);

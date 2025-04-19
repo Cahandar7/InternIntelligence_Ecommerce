@@ -11,7 +11,12 @@ import {
 import { LanguageContext } from "../contexts/LanguageContext";
 import { CurrencyContext } from "../contexts/CurrencyContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPen, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import {
+  faPen,
+  faTrashAlt,
+  faMoon,
+  faSun,
+} from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { ThemeContext } from "../contexts/ThemeContext";
 
@@ -76,6 +81,17 @@ const AdminPanel = () => {
     en: "English",
     ru: "Русский",
     az: "Azərbaycan",
+  };
+
+  const [rotating, setRotating] = useState(false);
+
+  const toggleTheme = () => {
+    setRotating(true);
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+
+    setTimeout(() => {
+      setRotating(false);
+    }, 500);
   };
 
   const handleAddProduct = () => {
@@ -243,41 +259,13 @@ const AdminPanel = () => {
             }
           ></span>
 
-          <div className="dropdown">
-            <button
-              className="dropdown-toggle"
-              type="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-              style={theme === "dark" ? { color: "#fff" } : { color: "#000" }}
-            >
-              {theme}
-            </button>
-            <ul className={`dropdown-menu ${theme}`}>
-              <li>
-                <button
-                  className="dropdown-item"
-                  style={
-                    theme === "dark" ? { color: "#fff" } : { color: "#000" }
-                  }
-                  onClick={() => setTheme("dark")}
-                >
-                  dark
-                </button>
-              </li>
-              <li>
-                <button
-                  className="dropdown-item"
-                  style={
-                    theme === "dark" ? { color: "#fff" } : { color: "#000" }
-                  }
-                  onClick={() => setTheme("light")}
-                >
-                  light
-                </button>
-              </li>
-            </ul>
-          </div>
+          <button
+            onClick={toggleTheme}
+            className={`theme-toggle-button ${rotating ? "rotating" : ""}`}
+            aria-label="Toggle theme"
+          >
+            <FontAwesomeIcon icon={theme === "dark" ? faSun : faMoon} />
+          </button>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
           <span
