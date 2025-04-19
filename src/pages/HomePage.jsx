@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import HomeBanner from "../components/HomeBanner";
+import HomeProductsCarousel from "../components/HomeProductsCarousel";
 import shine_img1 from "../assets/images/shine_card_img1.png";
 import shine_img2 from "../assets/images/shine_card_img2.png";
 import shine_img3 from "../assets/images/shine_card_img3.png";
@@ -7,8 +8,6 @@ import Marquee from "react-fast-marquee";
 import BlogSlider from "../components/BlogSlider";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import ProductCard from "../components/ProductCard";
-import { Swiper, SwiperSlide } from "swiper/react";
 import { LanguageContext } from "../contexts/LanguageContext";
 import { ThemeContext } from "../contexts/ThemeContext";
 
@@ -92,50 +91,7 @@ const HomePage = () => {
         </div>
       </div>
 
-      <div className="products-slider-container">
-        <div className="texts">
-          <h1>
-            {language === "en"
-              ? "TOP INTERESTING"
-              : language === "ru"
-              ? "ТОП ИНТЕРЕСНЫЕ"
-              : "ƏN MARAQLI"}
-          </h1>
-          <p>
-            {language === "en"
-              ? "Browse the collection of our dark best selling and top interesting products. You’ll definitely find what you are looking for."
-              : language === "ru"
-              ? "Просмотрите коллекцию наших самых популярных и интересных товаров. Вы точно найдете то, что ищете."
-              : "Ən çox satılan və maraqlı məhsullarımızın kolleksiyasını gəzin. Axtardığınızı tapacaqsınız."}
-          </p>
-        </div>
-        <Swiper
-          style={{ width: "70%" }}
-          spaceBetween={0}
-          slidesPerView={3}
-          loop={false}
-          breakpoints={{
-            1024: { slidesPerView: 3 },
-            768: { slidesPerView: 2 },
-            480: { slidesPerView: 1 },
-          }}
-        >
-          {products
-            .filter((el) => el.rating > 9)
-            .map((item, index) => (
-              <SwiperSlide key={index}>
-                <ProductCard
-                  image={item.image}
-                  title={item.title}
-                  category={item.category}
-                  brand={item.brand}
-                  price={item.price}
-                  alldata={item}
-                />
-              </SwiperSlide>
-            ))}
-        </Swiper>
-      </div>
+      <HomeProductsCarousel products={products} language={language} />
 
       <Marquee
         speed={100}
