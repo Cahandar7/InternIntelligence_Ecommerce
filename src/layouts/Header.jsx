@@ -40,6 +40,8 @@ const Header = () => {
   const { currency, setCurrency } = useContext(CurrencyContext);
   const { theme, setTheme } = useContext(ThemeContext);
 
+  const [email, setEmail] = useState("");
+
   const [show, setShow] = useState(false);
   const [rotating, setRotating] = useState(false);
 
@@ -105,6 +107,23 @@ const Header = () => {
     return () => {
       authListener?.subscription.unsubscribe();
     };
+  }, []);
+
+  useEffect(() => {
+    const getUser = async () => {
+      const {
+        data: { user },
+        error,
+      } = await supabase.auth.getUser();
+
+      if (error) {
+        console.error("Error fetching user:", error);
+      } else {
+        setEmail(user?.email || "");
+      }
+    };
+
+    getUser();
   }, []);
 
   const handleLogout = async () => {
@@ -782,6 +801,7 @@ const Header = () => {
                 ? "Рассылка"
                 : "Bülleten"}
             </Link>
+
             <span
               className="split-stick"
               style={
@@ -790,6 +810,7 @@ const Header = () => {
                   : { backgroundColor: "#000" }
               }
             ></span>
+
             <div
               className="top-h-order-status"
               onClick={() => {
@@ -834,6 +855,19 @@ const Header = () => {
                 ? "Статус заказа"
                 : "Sifarişin vəziyyəti"}
             </div>
+
+            {email && (
+              <>
+                <span
+                  className="split-stick"
+                  style={{
+                    backgroundColor: theme === "dark" ? "#fff" : "#000",
+                  }}
+                ></span>
+
+                <div>{email}</div>
+              </>
+            )}
           </div>
         </div>
         <div className="middle-h">

@@ -90,7 +90,7 @@ const Login = () => {
           adminAccount.email !== email &&
           adminAccount.password !== password
         ) {
-          navigate("/shop");
+          window.location.assign("/");
           setEmail("");
           setPassword("");
         }

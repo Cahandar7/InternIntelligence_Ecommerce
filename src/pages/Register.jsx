@@ -12,14 +12,20 @@ const Register = () => {
   const { theme } = useContext(ThemeContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
   const adminAccount = { email: "admin@gmail.com", password: "admin123" };
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (adminAccount.email === email && adminAccount.password === password) {
+    if (
+      adminAccount.email === email &&
+      adminAccount.password === password &&
+      adminAccount.password === confirmPassword
+    ) {
       Swal.fire({
         title: language === "en" ? "STOP" : language === "ru" ? "СТОП" : "STOP",
         text:
@@ -33,7 +39,7 @@ const Register = () => {
       return;
     }
 
-    if (password.length < 6) {
+    if (password.length < 8 || confirmPassword.length < 8) {
       Swal.fire({
         title:
           language === "en"
@@ -43,11 +49,30 @@ const Register = () => {
             : "Zəif şifrə!",
         text:
           language === "en"
-            ? "Password must be at least 6 characters long."
+            ? "Password must be at least 8 characters long."
             : language === "ru"
-            ? "Пароль должен быть не менее 6 символов."
-            : "Şifrə ən azı 6 simvoldan ibarət olmalıdır.",
+            ? "Пароль должен быть не менее 8 символов."
+            : "Şifrə ən azı 8 simvoldan ibarət olmalıdır.",
         icon: "warning",
+      });
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      Swal.fire({
+        icon: "error",
+        title:
+          language === "en"
+            ? "Oops..."
+            : language === "ru"
+            ? "Ой..."
+            : "Hups...",
+        text:
+          language === "en"
+            ? "Passwords do not match!"
+            : language === "ru"
+            ? "Пароли не совпадают!"
+            : "Şifrələr uyğun gəlmir!",
       });
       return;
     }
@@ -60,6 +85,7 @@ const Register = () => {
     if (error) {
       setEmail("");
       setPassword("");
+      setConfirmPassword("");
       Swal.fire({
         title:
           language === "en" ? "Oops!" : language === "ru" ? "Ой!" : "Hups!",
@@ -94,6 +120,10 @@ const Register = () => {
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
+  };
+
+  const toggleConfirmPasswordVisibility = () => {
+    setConfirmPasswordVisible(!confirmPasswordVisible);
   };
 
   return (
@@ -160,6 +190,41 @@ const Register = () => {
                 className="icon"
                 style={{ cursor: "pointer" }}
                 onClick={togglePasswordVisibility}
+                icon={faEye}
+                size="lg"
+              />
+            )}
+          </div>
+
+          <div className="input-box">
+            <input
+              id="password"
+              name="password"
+              type={confirmPasswordVisible ? "text" : "password"}
+              placeholder={
+                language === "en"
+                  ? "Confirm password"
+                  : language === "ru"
+                  ? "Подтвердите пароль"
+                  : "Şifrəni təsdiqləyin"
+              }
+              required
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+            {confirmPasswordVisible ? (
+              <FontAwesomeIcon
+                className="icon"
+                style={{ cursor: "pointer" }}
+                onClick={toggleConfirmPasswordVisibility}
+                icon={faEyeSlash}
+                size="lg"
+              />
+            ) : (
+              <FontAwesomeIcon
+                className="icon"
+                style={{ cursor: "pointer" }}
+                onClick={toggleConfirmPasswordVisibility}
                 icon={faEye}
                 size="lg"
               />
